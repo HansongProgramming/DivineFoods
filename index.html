@@ -1,0 +1,1032 @@
+<!doctype html>
+<html lang="en-AU" class="is-loading">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Divine Foods Aust. | Seductively Good</title>
+<meta name="description" content="Café-style cookies and Mini Bites, baked in South Windsor NSW since 1997. Wholesale for cafés and retail, and discreet contract manufacturing.">
+<meta name="theme-color" content="#140e0c">
+<link rel="icon" href="assets/stamp.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cocoa:#140e0c; --cocoa-2:#1c1411; --cocoa-3:#271b16; --night:#0c0807;
+  --bone:#f6efe6; --mute:#bcab9f; --dim:#938075; --line:rgba(246,239,230,.14);
+  --pink:#f3bfd0; --pink-hi:#f8d5e0; --pink-ink:#5b1a30; --butter:#e3b169;
+  --ink:#140e0c; --err:#7a1430;
+  --display:"Anton", "Bebas Neue", sans-serif;
+  --serif:"Bodoni Moda", "Didot", Georgia, serif;
+  --sans:"Hanken Grotesk", system-ui, sans-serif;
+  --gutter:clamp(16px, 4vw, 56px);
+  --max:1440px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cocoa);color:var(--bone);font:400 1.0625rem/1.6 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,textarea{font:inherit;color:inherit}
+::selection{background:var(--pink);color:var(--ink)}
+:focus-visible{outline:2px solid var(--pink);outline-offset:4px;border-radius:2px}
+html{scrollbar-color:var(--cocoa-3) var(--night)}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--night)}::-webkit-scrollbar-thumb{background:#3a2a23;border-radius:10px;border:2px solid var(--night)}
+input,textarea{caret-color:var(--pink)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- stage ---------- */
+#stage{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;display:block}
+.grain{position:fixed;inset:-50%;z-index:4;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.layer{position:relative;z-index:2}
+.slot{position:relative}
+.slot__fallback{display:none;width:100%;height:100%;object-fit:contain}
+html.no-3d .slot__fallback{display:block}
+html.no-3d .needs-3d{display:none!important}
+
+/* bite tag */
+.bite-tag{position:fixed;left:0;top:0;z-index:30;pointer-events:none;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;
+  background:var(--pink);color:var(--ink);display:grid;place-items:center;font:600 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  transform:scale(0);transition:transform .35s var(--ease);box-shadow:0 10px 30px -8px rgba(0,0,0,.6)}
+.bite-tag.on{transform:scale(1)}
+@media (hover:none){.bite-tag{display:none}}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:2rem;padding:18px var(--gutter);transition:background .5s var(--ease),padding .5s var(--ease)}
+.nav.scrolled{background:rgba(20,14,12,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding-block:12px;box-shadow:0 1px 0 var(--line)}
+.nav__logo img{height:38px;width:auto;transition:height .5s var(--ease)}
+.nav.scrolled .nav__logo img{height:30px}
+.nav__links{display:flex;gap:2rem;margin-left:auto;list-style:none;padding:0;margin-block:0}
+.nav__links a{text-decoration:none;font:600 .78rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);transition:color .2s}
+.nav__links a:hover{color:var(--bone)}
+.nav__menu{display:none;background:none;border:0;padding:8px;margin-left:auto;cursor:pointer}
+.nav__menu svg{display:block}
+
+.btn{--bg:transparent;--fg:var(--bone);--bd:var(--line);display:inline-flex;align-items:center;gap:.7rem;padding:.95rem 1.4rem;border-radius:999px;border:1.5px solid var(--bd);
+  background:var(--bg);color:var(--fg);text-decoration:none;font:600 .78rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;white-space:nowrap;
+  transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease)}
+.btn svg{transition:transform .35s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn:hover{border-color:var(--bone)}
+.btn--pink{--bg:var(--pink);--fg:var(--ink);--bd:var(--pink)}
+.btn--pink:hover{--bg:var(--bone);--bd:var(--bone)}
+.btn--ink{--bg:var(--ink);--fg:var(--pink);--bd:var(--ink)}
+.btn--ink:hover{--bg:#2b1e19;--bd:#2b1e19}
+.btn--line-ink{--fg:var(--ink);--bd:rgba(20,14,12,.35)}
+.btn--line-ink:hover{--bd:var(--ink)}
+.btn:active{transform:scale(.97)}
+
+.menu{position:fixed;inset:0;z-index:19;background:var(--cocoa);display:flex;flex-direction:column;justify-content:center;gap:.4rem;padding:var(--gutter);
+  clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease);visibility:hidden}
+.menu.open{clip-path:inset(0 0 0 0);visibility:visible}
+.menu a{font:400 clamp(2.6rem,12vw,4.5rem)/1.05 var(--display);text-transform:uppercase;text-decoration:none}
+.menu a:hover{color:var(--pink)}
+.menu p{color:var(--mute);margin-top:2rem}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;position:relative;display:grid;grid-template-rows:1fr auto;padding:110px var(--gutter) 40px}
+.hero__mark{position:absolute;inset:0;z-index:0;display:grid;place-items:center;overflow:hidden;pointer-events:none}
+.hero__mark span{font:400 clamp(9rem,31vw,34rem)/.8 var(--display);letter-spacing:-.01em;color:#21160f;text-transform:uppercase;user-select:none;
+  transform:translateY(-4%);display:flex}
+.hero__mark i{font-style:normal;display:inline-block;animation:rise 1.4s var(--ease) both}
+.hero__mark i:nth-child(2){animation-delay:.06s}.hero__mark i:nth-child(3){animation-delay:.12s}.hero__mark i:nth-child(4){animation-delay:.18s}.hero__mark i:nth-child(5){animation-delay:.24s}.hero__mark i:nth-child(6){animation-delay:.3s}
+@keyframes rise{from{transform:translateY(30%);opacity:0}to{transform:none;opacity:1}}
+.hero__glow{position:absolute;z-index:0;left:50%;top:46%;width:min(80vw,900px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(227,177,105,.16),rgba(243,191,208,.06) 55%,transparent 75%);pointer-events:none}
+.hero .slot{position:absolute;left:50%;top:46%;width:min(56vh,46vw);aspect-ratio:1;transform:translate(-50%,-50%)}
+.hero .slot__fallback{object-fit:cover;border-radius:50%}
+.hero__foot{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:end;gap:2rem;align-self:end}
+.hero h1{margin:0;font:400 clamp(3rem,6.4vw,6rem)/.9 var(--display);text-transform:uppercase;letter-spacing:.005em;max-width:11ch;text-wrap:balance}
+.hero h1 em{font:italic 400 1em/1 var(--serif);text-transform:none;color:var(--pink);letter-spacing:-.01em}
+.hero__side{justify-self:end;max-width:30rem;display:grid;gap:1.4rem}
+.hero__side p{margin:0;color:var(--mute);font-size:1.0625rem}
+.hero__side p strong{color:var(--bone);font-weight:600}
+.hero__ctas{display:flex;gap:.75rem;flex-wrap:wrap}
+.hint{position:absolute;z-index:3;left:calc(50% + min(28vh,23vw) - 10px);top:calc(46% - min(28vh,23vw) + 20px);display:flex;align-items:flex-start;gap:.4rem;
+  font:italic 400 1.45rem/1.1 var(--serif);color:var(--pink)}
+.hint button{all:unset;cursor:pointer;border-bottom:1px solid currentColor}
+.hint button:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
+.hint svg{flex:none;margin-top:.4rem;transform:scaleX(-1) rotate(10deg)}
+.hint__count{display:block;font:600 .7rem/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:.5rem}
+
+/* ---------- confession ---------- */
+.confess{padding:clamp(120px,18vh,220px) var(--gutter)}
+.confess p{margin:0 auto;max-width:22ch;font:400 clamp(2.2rem,4.6vw,4.4rem)/1.08 var(--serif);text-align:center;text-wrap:balance}
+.confess p em{color:var(--pink)}
+.confess small{display:block;text-align:center;margin-top:2.4rem;font:600 .75rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+
+/* ---------- section heads ---------- */
+.h2{margin:0;font:400 clamp(2.8rem,6.2vw,6rem)/.9 var(--display);text-transform:uppercase;letter-spacing:.005em;text-wrap:balance}
+.h2 em{font:italic 400 1em/1 var(--serif);text-transform:none;color:var(--pink)}
+.lede{color:var(--mute);max-width:36rem;margin:1.6rem 0 0}
+
+/* ---------- range ---------- */
+.range{padding:clamp(80px,12vh,140px) var(--gutter) clamp(90px,14vh,160px);max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,4vw,5rem);align-items:start}
+.range__list{list-style:none;padding:0;margin:2.6rem 0 0;border-top:1px solid var(--line)}
+.range__list button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--line);
+  font:400 clamp(1.6rem,2.6vw,2.4rem)/1.05 var(--display);text-transform:uppercase;color:var(--dim);transition:color .3s var(--ease),transform .4s var(--ease)}
+.range__list button span{font:italic 400 1.05rem/1 var(--serif);text-transform:none;color:var(--dim);opacity:0;transition:opacity .3s}
+.range__list button:hover{color:var(--bone)}
+.range__list button[aria-pressed="true"]{color:var(--pink);transform:translateX(.9rem)}
+.range__list button[aria-pressed="true"] span{opacity:1;color:var(--mute)}
+.range__list button:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.range__stage{position:sticky;top:90px;display:grid;gap:1.2rem}
+.range .slot{width:100%;aspect-ratio:1/0.82}
+.range__detail{display:grid;grid-template-columns:1fr auto;align-items:end;gap:1rem 2rem;border-top:1px solid var(--line);padding-top:1.4rem}
+.range__name{margin:0;font:400 clamp(2rem,3.6vw,3.2rem)/.95 var(--display);text-transform:uppercase}
+.range__line{margin:.5rem 0 0;font:italic 400 1.5rem/1.2 var(--serif);color:var(--pink)}
+.range__spec{margin:.9rem 0 0;color:var(--mute);font-size:.95rem;font-variant-numeric:tabular-nums}
+.range__spec b{color:var(--bone);font-weight:600}
+
+/* ---------- counter box band ---------- */
+.band{position:relative;z-index:3;background:var(--bone);color:var(--ink)}
+.band__in{max-width:var(--max);margin:0 auto;padding:clamp(70px,10vh,120px) var(--gutter);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(2rem,5vw,6rem);align-items:center}
+.band img{width:100%;height:auto;filter:drop-shadow(0 30px 40px rgba(20,14,12,.25))}
+.band .h2{font-size:clamp(2.4rem,4.6vw,4.6rem)}
+.band .h2 em{color:#b0476b}
+.band p{color:#4d3d35;max-width:30rem;margin:1.4rem 0 2rem}
+.band p.spec{display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .8rem;margin:0 0 2rem;padding:1rem 0;border-block:1px solid rgba(20,14,12,.18);
+  font:italic 400 1.3rem/1.3 var(--serif);color:var(--ink);max-width:none}
+.band p.spec i{width:5px;height:5px;border-radius:50%;background:#b0476b}
+
+/* ---------- mini bites ---------- */
+.bites{padding:clamp(100px,14vh,170px) var(--gutter);max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(2rem,5vw,6rem);align-items:stretch}
+.tub{margin:2.6rem 0 0;border-top:1px solid var(--line)}
+.tub__row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:1.5rem;border-bottom:1px solid var(--line)}
+.tub__row button{all:unset;cursor:pointer;padding:1rem 0;display:flex;align-items:center;gap:1rem;font:400 clamp(1.4rem,2.2vw,1.9rem)/1 var(--display);text-transform:uppercase;color:var(--mute);transition:color .25s}
+.tub__row button i{width:14px;height:14px;border-radius:50%;background:var(--c);flex:none;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18);transition:transform .3s var(--ease)}
+.tub__row button:hover,.tub__row button[aria-pressed="true"]{color:var(--bone)}
+.tub__row button[aria-pressed="true"] i{transform:scale(1.5)}
+.tub__row button:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.tub__row span{font-variant-numeric:tabular-nums;color:var(--mute);font-size:.95rem}
+.tub__row a{font:600 .7rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--pink);padding:.6rem 0}
+.tub__row a:hover{text-decoration:underline;text-underline-offset:4px}
+.bites__pour{position:relative;min-height:520px;display:grid;align-items:end;justify-items:center}
+.bites__pour .slot{position:absolute;inset:0}
+.bites__pour img{position:relative;z-index:2;width:min(100%,420px);height:auto;filter:drop-shadow(0 40px 50px rgba(0,0,0,.55))}
+
+/* ---------- made for you ---------- */
+.made{position:relative;background:linear-gradient(var(--cocoa),var(--night) 18%,var(--night) 82%,var(--cocoa))}
+.made__in{max-width:var(--max);margin:0 auto;padding:clamp(110px,16vh,190px) var(--gutter);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,4vw,5rem);align-items:center}
+.shh{margin:0;font:400 clamp(4rem,9vw,6rem)/.85 var(--display);letter-spacing:.02em}
+.made__copy p{color:var(--mute);max-width:30rem}
+.made__copy p.big{font:400 clamp(1.7rem,2.6vw,2.3rem)/1.15 var(--serif);color:var(--bone);margin:1.6rem 0 1rem}
+.made__copy p.big em{color:var(--pink)}
+.brandfield{margin:2.4rem 0 0;display:grid;gap:.5rem}
+.brandfield label{font:600 .72rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.brandfield input{width:100%;background:transparent;border:0;border-bottom:2px solid var(--pink);padding:.3rem 0 .5rem;font:400 clamp(2rem,3.4vw,2.8rem)/1.1 var(--display);text-transform:uppercase;color:var(--bone);outline:none}
+.brandfield input::placeholder{color:#4b3a32}
+.brandfield input:focus{border-bottom-color:var(--bone)}
+.steps{list-style:none;padding:0;margin:2.4rem 0 2.4rem;display:flex;flex-wrap:wrap;gap:.4rem .6rem;align-items:center;font:italic 400 1.25rem/1.3 var(--serif);color:var(--mute)}
+.steps li{display:flex;align-items:center;gap:.6rem}
+.steps li:not(:last-child)::after{content:"";width:22px;height:1px;background:var(--dim)}
+.steps li:last-child{color:var(--pink)}
+.made .slot{width:100%;aspect-ratio:1/0.78}
+.made .slot--lean{position:absolute;width:24%;aspect-ratio:1;right:4%;bottom:4%}
+
+/* ---------- trade (pink) ---------- */
+.trade{position:relative;z-index:3;background:var(--pink);color:var(--ink)}
+.trade__in{max-width:var(--max);margin:0 auto;padding:clamp(100px,14vh,170px) var(--gutter);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(2.5rem,6vw,7rem)}
+.trade .h2 em{color:var(--pink-ink)}
+.trade__sub{font:italic 400 clamp(1.6rem,2.4vw,2.2rem)/1.15 var(--serif);margin:1.4rem 0 2.4rem;color:var(--pink-ink)}
+.trade__contact{list-style:none;padding:0;margin:2.6rem 0 0;display:grid;gap:1.2rem;border-top:1px solid rgba(20,14,12,.2);padding-top:1.8rem}
+.trade__contact li{display:grid;grid-template-columns:7rem 1fr;gap:1rem;align-items:baseline}
+.trade__contact span{font:600 .7rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pink-ink)}
+.trade__contact a{text-decoration:none;font-weight:600;font-size:1.15rem}
+.trade__contact a:hover{text-decoration:underline;text-underline-offset:4px}
+.trade :focus-visible{outline-color:var(--ink)}
+.trade ::selection{background:var(--ink);color:var(--pink)}
+
+.form{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem 1.6rem;align-content:start}
+.form fieldset{grid-column:1/-1;border:0;padding:0;margin:0 0 .6rem}
+.form legend{font:600 .72rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pink-ink);margin-bottom:.9rem;padding:0}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chips label{position:relative;cursor:pointer}
+.chips input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.chips span{display:block;padding:.65rem 1.05rem;border:1.5px solid rgba(20,14,12,.3);border-radius:999px;font:600 .82rem/1 var(--sans);transition:background .25s,color .25s,border-color .25s}
+.chips label:hover span{border-color:var(--ink)}
+.chips input:checked+span{background:var(--ink);color:var(--pink);border-color:var(--ink)}
+.chips input:focus-visible+span{outline:2px solid var(--ink);outline-offset:3px}
+.field{display:grid;gap:.35rem;position:relative}
+.field--full{grid-column:1/-1}
+.field label{font:600 .72rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pink-ink)}
+.field label b{color:var(--ink)}
+.field input,.field textarea{width:100%;background:transparent;border:0;border-bottom:1.5px solid rgba(20,14,12,.4);padding:.55rem 0;font-size:1.1rem;color:var(--ink);caret-color:var(--ink);border-radius:0;transition:border-color .2s}
+.field textarea{resize:vertical;min-height:7.5rem}
+.field input:focus,.field textarea:focus{outline:none;border-bottom-color:var(--ink);border-bottom-width:2px}
+.field input::placeholder,.field textarea::placeholder{color:#8d5a6b}
+.field .err{display:none;font-size:.85rem;color:var(--err);font-weight:600}
+.field.invalid input,.field.invalid textarea{border-bottom-color:var(--err)}
+.field.invalid .err{display:block}
+.form__foot{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:.6rem}
+.form__foot small{color:var(--pink-ink);font-size:.85rem;max-width:22rem}
+.sent{grid-column:1/-1;display:none;border-top:1.5px solid var(--ink);padding-top:1.6rem}
+.sent h3{margin:0;font:400 clamp(2.2rem,3.4vw,3rem)/1 var(--display);text-transform:uppercase}
+.sent p{margin:.6rem 0 0;font:italic 400 1.4rem/1.3 var(--serif);color:var(--pink-ink)}
+.form.done>*:not(.sent){display:none}
+.form.done .sent{display:block}
+
+/* ---------- footer ---------- */
+.foot{position:relative;z-index:3;background:var(--cocoa)}
+.foot__in{max-width:var(--max);margin:0 auto;padding:clamp(80px,12vh,130px) var(--gutter) 36px}
+.foot__mark{width:min(100%,780px);height:auto}
+.foot__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2rem;margin-top:clamp(3rem,7vh,5rem);padding-top:2rem;border-top:1px solid var(--line)}
+.foot h3{margin:0 0 .9rem;font:600 .72rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.foot ul{list-style:none;padding:0;margin:0;display:grid;gap:.45rem}
+.foot a{text-decoration:none;color:var(--mute)}
+.foot a:hover{color:var(--pink)}
+.foot address{font-style:normal;color:var(--mute)}
+.family{display:flex;flex-wrap:wrap;align-items:center;gap:1.4rem 2.4rem;margin-top:3.5rem;padding:1.6rem 2rem;background:var(--bone);border-radius:6px}
+.family h3{color:#6b5a50;margin:0 1rem 0 0}
+.family img{height:44px;width:auto}
+.family img.wide{height:30px}
+.foot__base{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:2.2rem;color:var(--dim);font-size:.85rem}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .nav__links,.nav .btn--pink{display:none}
+  .nav__menu{display:block}
+  .hero{padding-top:92px;display:block;min-height:0}
+  .hero .slot{position:relative;left:auto;top:auto;transform:none;margin:0 auto;width:min(74vw,44vh)}
+  .hero__glow{top:calc(92px + min(37vw,22vh))}
+  .hero__mark{place-items:start center;padding-top:calc(92px + min(10vw,6vh))}
+  .hint{position:relative;left:auto;top:auto;justify-content:center;text-align:center;margin:.6rem 0 2.2rem;font-size:1.3rem}
+  .hint br{display:none}
+  .hint svg{display:none}
+  .hero__foot{grid-template-columns:1fr}
+  .hero__side{justify-self:start}
+  .range,.bites,.made__in,.trade__in,.band__in{grid-template-columns:1fr}
+  .range__stage{position:relative;top:0;order:-1}
+  .range .slot{aspect-ratio:1/0.8}
+  .bites__pour{min-height:440px}
+  .made__copy{order:2}
+  .foot__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .hero__mark span{font-size:38vw}
+  .hero h1{font-size:clamp(2.6rem,13vw,3.6rem)}
+  .form{grid-template-columns:1fr}
+  .tub__row{gap:.9rem}
+  .tub__row button{font-size:1.3rem;gap:.7rem}
+  .tub__row span{font-size:.85rem}
+  .range__detail{grid-template-columns:1fr}
+  .range__detail .btn{justify-self:start}
+  .hero__ctas .btn{padding:.85rem 1.1rem;letter-spacing:.1em}
+  .trade__contact li{grid-template-columns:1fr;gap:.35rem}
+  .foot__grid{grid-template-columns:1fr}
+  .family{padding:1.4rem}
+  .family img{height:36px}
+  .family img.wide{height:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="bite-tag" id="biteTag" aria-hidden="true">Bite</div>
+
+<header class="nav" id="nav">
+  <a class="nav__logo" href="#top" aria-label="Divine Foods Aust. home"><img src="assets/wordmark-white.png" alt="Divine Foods Aust." width="79" height="38"></a>
+  <ul class="nav__links">
+    <li><a href="#range">Café cookies</a></li>
+    <li><a href="#bites">Mini Bites</a></li>
+    <li><a href="#made">Contract baking</a></li>
+    <li><a href="https://www.divinefoods.com.au/category/all-products">Shop</a></li>
+  </ul>
+  <a class="btn btn--pink" href="#trade">Trade enquiry</a>
+  <button class="nav__menu" id="menuBtn" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+    <svg width="28" height="14" viewBox="0 0 28 14" fill="none" stroke="#f6efe6" stroke-width="2"><path d="M0 1h28M8 13h20"/></svg>
+  </button>
+</header>
+<nav class="menu" id="menu" aria-label="Mobile">
+  <a href="#range">Café cookies</a>
+  <a href="#bites">Mini Bites</a>
+  <a href="#made">Contract baking</a>
+  <a href="#trade">Trade enquiry</a>
+  <a href="https://www.divinefoods.com.au/category/all-products">Shop</a>
+  <p>(02) 4587 8348 · info@divinefoods.com.au</p>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero__mark" aria-hidden="true"><span><i>D</i><i>I</i><i>V</i><i>I</i><i>N</i><i>E</i></span></div>
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="slot" data-obj="cookie" data-tilt="1.12" data-roll="0" data-size="1">
+      <img class="slot__fallback" src="assets/range-lineup.jpg" alt="Divine Foods café cookies in black display boxes with Mini Bites tubs">
+    </div>
+    <div class="hint needs-3d layer">
+      <svg width="46" height="40" viewBox="0 0 46 40" fill="none" stroke="#f3bfd0" stroke-width="1.6" stroke-linecap="round"><path d="M44 2C30 4 14 12 8 32"/><path d="M2 24l6 10 9-6"/></svg>
+      <div>
+        <button type="button" id="biteBtn">Take a bite.</button> <br>Go on.
+        <span class="hint__count" id="biteCount" aria-live="polite">Nobody's counting</span>
+      </div>
+    </div>
+    <div class="hero__foot layer">
+      <h1>Give in to a little bit of <em>sugar.</em></h1>
+      <div class="hero__side">
+        <p><strong>Seductively good.</strong> Café cookies and Mini Bites, baked in South Windsor, NSW since 1997, for cafés, counters and anyone with a sweet tooth.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--pink" href="#trade">Get wholesale prices <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 5h14M10 1l4 4-4 4"/></svg></a>
+          <a class="btn" href="https://www.divinefoods.com.au/category/all-products">Shop online</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFESSION -->
+  <section class="confess layer" aria-label="About Divine Foods">
+    <p>We've been baking in a quiet corner of South Windsor since 1997. For cafés. For counters. And for <em>a lot of people you'd never guess.</em></p>
+    <small>Est. 1997 · 5 Blackman Crescent, South Windsor NSW</small>
+  </section>
+
+  <!-- RANGE -->
+  <section class="range" id="range">
+    <div class="layer">
+      <h2 class="h2">Seven ways to <em>misbehave.</em></h2>
+      <p class="lede">Our café-style cookies come individually wrapped, twelve to a counter-ready box. Pick one to see it up close.</p>
+      <ul class="range__list" id="flavourList"></ul>
+    </div>
+    <div class="range__stage">
+      <div class="slot" data-obj="cookie" data-tilt="1.02" data-roll="-0.12" data-size="0.92">
+        <img class="slot__fallback" src="assets/display-box.png" alt="Galaxy Cookie display box">
+      </div>
+      <div class="range__detail layer" aria-live="polite">
+        <div>
+          <h3 class="range__name" id="fName">Galaxy</h3>
+          <p class="range__line" id="fLine">Every colour, all at once.</p>
+          <p class="range__spec">Café style · <b>12 × 55g</b> · <b>$40</b> a box</p>
+        </div>
+        <a class="btn btn--pink" href="https://www.divinefoods.com.au/category/caf%C3%A9-style-cookies">Shop café cookies</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTER BOX BAND -->
+  <section class="band" aria-label="The counter box">
+    <div class="band__in">
+      <img src="assets/display-box.png" alt="A black Divine Foods display box holding twelve wrapped Galaxy cookies, one cookie leaning against it" width="1024" height="495" loading="lazy">
+      <div>
+        <h2 class="h2">The box that sells <em>itself.</em></h2>
+        <p>Black, unmissable and made for the counter. Twelve wrapped cookies stand to attention by the register, so your customers do the rest.</p>
+        <p class="spec">12 cookies a box <i></i> 55g each, individually wrapped <i></i> 7 flavours</p>
+        <a class="btn btn--ink" href="#trade">Stock it in your café <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 5h14M10 1l4 4-4 4"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MINI BITES -->
+  <section class="bites" id="bites">
+    <div class="layer">
+      <h2 class="h2">Mini Bites. <em>By the bucket.</em></h2>
+      <p class="lede">Bite-sized cookies packed by the tub, made for jars on the counter, plates at the meeting and the bottom drawer. Tap a flavour and watch it pour.</p>
+      <div class="tub" id="tubList" role="list"></div>
+    </div>
+    <div class="bites__pour">
+      <div class="slot" data-obj="pour"></div>
+      <img src="assets/bucket.png" alt="A tipped-over tub spilling flower-shaped butter Mini Bites" width="765" height="1024" loading="lazy">
+    </div>
+  </section>
+
+  <!-- MADE FOR YOU -->
+  <section class="made" id="made">
+    <div class="made__in">
+      <div class="made__copy layer">
+        <h2 class="shh">SHHH.</h2>
+        <p class="big">We can make your cookies for you and <em>nobody will know.</em></p>
+        <p>Contract baking for cookies and cakes. We do this for a lot of people, but you'd never know who. Type your brand below and see it on the box.</p>
+        <div class="brandfield">
+          <label for="brandInput">Your brand here</label>
+          <input id="brandInput" type="text" maxlength="22" placeholder="Your brand" autocomplete="organization" spellcheck="false">
+        </div>
+        <ol class="steps">
+          <li>You bring the brand</li>
+          <li>We bake it in South Windsor</li>
+          <li>It ships under your name</li>
+          <li>Nobody knows</li>
+        </ol>
+        <a class="btn btn--pink" href="#trade" data-enquiry="contract">Talk to us, quietly <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 5h14M10 1l4 4-4 4"/></svg></a>
+      </div>
+      <div class="slot" data-obj="box">
+        <div class="slot slot--lean" data-obj="cookie" data-tilt="1.38" data-roll="0.32" data-size="1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRADE -->
+  <section class="trade" id="trade">
+    <div class="trade__in">
+      <div>
+        <h2 class="h2">Have a café or retail <em>outlet?</em></h2>
+        <p class="trade__sub">Our wholesale prices are even better.</p>
+        <a class="btn btn--ink" href="https://www.divinefoods.com.au/_files/ugd/5a0a97_b64fff04ac7d4396a13105d0bfaf99e1.pdf" target="_blank" rel="noopener">Download the brochure (PDF) <svg width="12" height="14" viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 0v11M1.5 6.5 6 11l4.5-4.5M0 13.2h12"/></svg></a>
+        <ul class="trade__contact">
+          <li><span>Call</span><a href="tel:+61245878348">(02) 4587 8348</a></li>
+          <li><span>Email</span><a href="mailto:info@divinefoods.com.au">info@divinefoods.com.au</a></li>
+          <li><span>Find us</span><a href="https://maps.google.com/?q=5+Blackman+Crescent+South+Windsor+NSW" target="_blank" rel="noopener">5 Blackman Crescent, South Windsor NSW</a></li>
+        </ul>
+      </div>
+      <form class="form" id="enquiry" novalidate>
+        <fieldset>
+          <legend>I'm interested in</legend>
+          <div class="chips">
+            <label><input type="radio" name="type" value="wholesale" checked><span>Wholesale for my café or shop</span></label>
+            <label><input type="radio" name="type" value="contract"><span>Contract baking</span></label>
+            <label><input type="radio" name="type" value="question"><span>Just a question</span></label>
+          </div>
+        </fieldset>
+        <div class="field"><label for="fn">First name <b>*</b></label><input id="fn" name="first" autocomplete="given-name" required><span class="err">We'll need a name to say hello.</span></div>
+        <div class="field"><label for="ln">Last name</label><input id="ln" name="last" autocomplete="family-name"></div>
+        <div class="field"><label for="em">Email <b>*</b></label><input id="em" name="email" type="email" autocomplete="email" required><span class="err">That email doesn't look right. Check for a typo.</span></div>
+        <div class="field"><label for="ph">Phone</label><input id="ph" name="phone" type="tel" autocomplete="tel"></div>
+        <div class="field field--full"><label for="co">Café, shop or company</label><input id="co" name="company" autocomplete="organization"></div>
+        <div class="field field--full"><label for="msg">Message <b>*</b></label><textarea id="msg" name="message" required placeholder="Tell us what you're after: flavours, quantities, how often."></textarea><span class="err">Add a few words so we know how to help.</span></div>
+        <div class="form__foot">
+          <small>We reply on business days, usually within one.</small>
+          <button class="btn btn--ink" type="submit">Send enquiry <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 5h14M10 1l4 4-4 4"/></svg></button>
+        </div>
+        <div class="sent" role="status">
+          <h3 id="sentTitle">Thank you.</h3>
+          <p>We'll be in touch. Quietly.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot__in">
+    <img class="foot__mark" src="assets/wordmark-white.png" alt="Divine Foods Aust." width="1200" height="576" loading="lazy">
+    <div class="foot__grid">
+      <div><h3>Visit</h3><address>5 Blackman Crescent<br>South Windsor NSW</address></div>
+      <div><h3>Talk</h3><ul><li><a href="tel:+61245878348">(02) 4587 8348</a></li><li><a href="mailto:info@divinefoods.com.au">info@divinefoods.com.au</a></li></ul></div>
+      <div><h3>Shop</h3><ul>
+        <li><a href="https://www.divinefoods.com.au/category/all-products">Shop all</a></li>
+        <li><a href="https://www.divinefoods.com.au/category/caf%C3%A9-style-cookies">Café style cookies</a></li>
+        <li><a href="https://www.divinefoods.com.au/category/mini-bites">Mini Bites</a></li></ul></div>
+      <div><h3>Trade</h3><ul>
+        <li><a href="#trade">Wholesale enquiry</a></li>
+        <li><a href="#made">Contract baking</a></li>
+        <li><a href="https://www.divinefoods.com.au/_files/ugd/5a0a97_b64fff04ac7d4396a13105d0bfaf99e1.pdf" target="_blank" rel="noopener">Brochure (PDF)</a></li></ul></div>
+    </div>
+    <div class="family">
+      <h3>Our other brands</h3>
+      <img src="assets/brand-eeeeet.png" alt="Eeeeet" loading="lazy">
+      <img src="assets/brand-dadima.png" alt="Dadima" loading="lazy">
+      <img class="wide" src="assets/brand-village-bakehouse.png" alt="The Village Bakehouse Australia" loading="lazy">
+      <img class="wide" src="assets/brand-swaadh.png" alt="Swaadh" loading="lazy">
+    </div>
+    <div class="foot__base"><span>© Divine Foods Aust. Seductively good since 1997.</span><span>Concept redesign by Cre8tive Sync</span></div>
+  </div>
+</footer>
+
+<script>
+/* ---------- content + UI (works without WebGL) ---------- */
+window.DF = {
+  flavours: [
+    { id:'galaxy',   name:'Galaxy',             line:'Every colour, all at once.',          dough:'#d9a86b', dark:'#9a6331', inc:[{t:'candy',n:14,c:['#f2c230','#e8572a','#e0457b','#4aa564','#3d7bd6','#f29a2e']},{t:'chip',n:4,c:['#3a2014']}] },
+    { id:'midgalaxy',name:'Midnight Galaxy',    line:'Galaxy, with the lights off.',        dough:'#4a2a1d', dark:'#22130d', inc:[{t:'candy',n:14,c:['#f2c230','#e8572a','#e0457b','#4aa564','#3d7bd6','#f29a2e']}] },
+    { id:'redcarpet',name:'Red Carpet',         line:'Dressed for an entrance.',            dough:'#9c2b2c', dark:'#561417', inc:[{t:'chunk',n:12,c:['#f4ead8','#efe2c9']}] },
+    { id:'triple',   name:'Triple Choc',        line:'Chocolate, then more chocolate.',     dough:'#5c3626', dark:'#2b180f', inc:[{t:'chip',n:10,c:['#24120b']},{t:'chip',n:6,c:['#7a4a2a']},{t:'chunk',n:6,c:['#f2e6cf']}] },
+    { id:'daydream', name:'Daydream Macadamia', line:'Soft focus, golden edges.',           dough:'#e2bb80', dark:'#a8723c', inc:[{t:'nut',n:9,c:['#efdcb1','#e6cc96']},{t:'chunk',n:7,c:['#f6ecd9']}] },
+    { id:'midmac',   name:'Midnight Macadamia', line:'The daydream, after dark.',           dough:'#3b2219', dark:'#1c0f0a', inc:[{t:'nut',n:9,c:['#efdcb1','#e3c993']},{t:'chunk',n:7,c:['#f6ecd9']}] },
+    { id:'anzac',    name:'Oatie Anzac',        line:'The one your nan would approve of.',  dough:'#c8904a', dark:'#80491d', inc:[{t:'oat',n:30,c:['#e6c891','#d9b373','#efd7a5']}] }
+  ],
+  bites: [
+    { name:'Lemon Myrtle', w:'1.4kg', c:'#efd98c', shape:'flower' },
+    { name:'Butter',       w:'1.4kg', c:'#e9c47f', shape:'flower' },
+    { name:'Vanilla',      w:'1.4kg', c:'#f2e2b6', shape:'flower' },
+    { name:'Choc Chip',    w:'1.4kg', c:'#c48d4f', shape:'round'  },
+    { name:'Double Choc',  w:'1.4kg', c:'#4a2a1d', shape:'round'  },
+    { name:'Anzac',        w:'1.2kg', c:'#b8783a', shape:'round'  }
+  ],
+  flavour: 0, pour: 1
+};
+(function(){
+  const $ = s => document.querySelector(s);
+  const emit = (n,d) => document.dispatchEvent(new CustomEvent(n,{detail:d}));
+
+  // nav
+  const nav = $('#nav');
+  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  const menu = $('#menu'), mb = $('#menuBtn');
+  mb.addEventListener('click', () => { const o = !menu.classList.contains('open'); menu.classList.toggle('open', o); mb.setAttribute('aria-expanded', o); mb.setAttribute('aria-label', o ? 'Close menu' : 'Open menu'); document.body.style.overflow = o ? 'hidden' : ''; });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); mb.setAttribute('aria-expanded', false); document.body.style.overflow = ''; }));
+
+  // flavours
+  const list = $('#flavourList');
+  DF.flavours.forEach((f,i) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<button type="button" aria-pressed="${i===0}">${f.name}<span>${f.line}</span></button>`;
+    li.firstChild.addEventListener('click', () => setFlavour(i));
+    list.appendChild(li);
+  });
+  function setFlavour(i){
+    if (i === DF.flavour) return;
+    DF.flavour = i;
+    list.querySelectorAll('button').forEach((b,j) => b.setAttribute('aria-pressed', i===j));
+    $('#fName').textContent = DF.flavours[i].name;
+    $('#fLine').textContent = DF.flavours[i].line;
+    emit('df:flavour', i);
+  }
+  DF.setFlavour = setFlavour;
+
+  // mini bites
+  const tub = $('#tubList');
+  DF.bites.forEach((b,i) => {
+    const row = document.createElement('div');
+    row.className = 'tub__row'; row.setAttribute('role','listitem');
+    row.innerHTML = `<button type="button" aria-pressed="${i===DF.pour}" style="--c:${b.c}"><i></i>${b.name}</button><span>${b.w} · $47</span><a href="https://www.divinefoods.com.au/category/mini-bites">Shop<span class="sr-only"> ${b.name} Mini Bites</span></a>`;
+    const btn = row.querySelector('button');
+    const pick = () => { DF.pour = i; tub.querySelectorAll('button').forEach((x,j)=>x.setAttribute('aria-pressed', i===j)); emit('df:pour', i); };
+    btn.addEventListener('click', pick);
+    btn.addEventListener('mouseenter', pick);
+    tub.appendChild(row);
+  });
+
+  // brand
+  const bi = $('#brandInput');
+  bi.addEventListener('input', () => emit('df:brand', bi.value));
+
+  // enquiry type preset from "talk to us"
+  document.querySelectorAll('[data-enquiry]').forEach(a => a.addEventListener('click', () => {
+    const r = document.querySelector(`input[name=type][value=${a.dataset.enquiry}]`); if (r) r.checked = true;
+  }));
+
+  // bite button + counter
+  $('#biteBtn').addEventListener('click', () => emit('df:request-bite'));
+  const lines = ['Go on.','Another?','We won’t tell.','Seductively good, right?','Nearly gone…','All gone. Here’s a fresh one.'];
+  let total = 0;
+  document.addEventListener('df:bite', e => {
+    total++;
+    const msg = e.detail.finished ? lines[5] : lines[Math.min(total, 4)];
+    $('#biteCount').textContent = `${total} bite${total>1?'s':''} · ${msg}`;
+  });
+
+  // form
+  const form = $('#enquiry');
+  const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let first = null;
+    [['fn', v => v.trim().length > 0], ['em', emailOk], ['msg', v => v.trim().length > 2]].forEach(([id, ok]) => {
+      const el = document.getElementById(id), bad = !ok(el.value);
+      el.closest('.field').classList.toggle('invalid', bad);
+      el.setAttribute('aria-invalid', bad);
+      if (bad && !first) first = el;
+    });
+    if (first) { first.focus(); return; }
+    $('#sentTitle').textContent = `Thank you, ${form.first.value.trim()}.`;
+    form.classList.add('done');
+  });
+  form.querySelectorAll('input,textarea').forEach(el => el.addEventListener('input', () => el.closest('.field')?.classList.remove('invalid')));
+
+  // WebGL fallback if the stage never comes up
+  setTimeout(() => { if (!window.__stageReady) document.documentElement.classList.add('no-3d'); document.documentElement.classList.remove('is-loading'); }, 4000);
+})();
+</script>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const DF = window.DF;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const canvas = document.getElementById('stage');
+
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true, powerPreference:'high-performance' }); }
+catch (e) { document.documentElement.classList.add('no-3d'); throw e; }
+renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+renderer.setSize(innerWidth, innerHeight, false);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.08;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(35, innerWidth/innerHeight, 0.1, 60);
+camera.position.set(0, 0, 6);
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+scene.add(new THREE.HemisphereLight(0xffe7d2, 0x2a1510, 0.7));
+const key = new THREE.DirectionalLight(0xfff0de, 2.4); key.position.set(3, 4, 5); scene.add(key);
+const rim = new THREE.DirectionalLight(0xf3bfd0, 2.2); rim.position.set(-4, 2, -3); scene.add(rim);
+const fill = new THREE.DirectionalLight(0xe3b169, 0.6); fill.position.set(-3, -2, 4); scene.add(fill);
+
+/* ---------- noise ---------- */
+function hash2(i, j, s){ let h = (Math.imul(i, 374761393) + Math.imul(j, 668265263) + Math.imul(s, 2147483647)) | 0; h = Math.imul(h ^ (h >>> 13), 1274126177); h ^= h >>> 16; return (h >>> 0) / 4294967296; }
+function vnoise(x, y, s){ const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi; const u = xf*xf*(3-2*xf), v = yf*yf*(3-2*yf);
+  const a = hash2(xi,yi,s), b = hash2(xi+1,yi,s), c = hash2(xi,yi+1,s), d = hash2(xi+1,yi+1,s); return a + (b-a)*u + (c-a)*v + (a-b-c+d)*u*v; }
+function fbm(x, y, s){ let t = 0, a = .5, f = 1; for (let o = 0; o < 4; o++){ t += a*vnoise(x*f, y*f, s+o*17); f *= 2.03; a *= .5; } return t / .9375; }
+const smooth = (a,b,x) => { const t = Math.min(Math.max((x-a)/(b-a),0),1); return t*t*(3-2*t); };
+
+/* ---------- cookie geometry ---------- */
+const T = 0.27;
+function edgeR(th, s){ return 1 + 0.03*(fbm(Math.cos(th)*1.4+3, Math.sin(th)*1.4+3, s) - .5)*2 + 0.012*(vnoise(Math.cos(th)*6+9, Math.sin(th)*6+9, s) - .5)*2; }
+function topAt(x, z, sy, s){
+  const dome = T*Math.pow(sy, 0.5);
+  const fade = smooth(0, 0.35, sy);
+  const bumps = (fbm(x*2.3+11, z*2.3+5, s) - .5)*0.1;
+  const ridge = 1 - Math.abs(fbm(x*1.7+31, z*1.7+13, s+7)*2 - 1);
+  const crack = Math.pow(ridge, 9);
+  return { y: dome + (bumps - crack*0.055)*fade, crack };
+}
+function surfaceY(x, z, s){
+  const th = Math.atan2(z, x); const ru = Math.hypot(x, z) / edgeR(th, s);
+  if (ru >= 1) return 0; return topAt(x, z, Math.sqrt(1 - ru*ru), s).y;
+}
+function buildCookieGeo(s){
+  let g = new THREE.SphereGeometry(1, 220, 110); g.deleteAttribute('uv'); g.deleteAttribute('normal');
+  g = mergeVertices(g, 1e-5);
+  const p = g.attributes.position, shade = new Float32Array(p.count);
+  for (let i = 0; i < p.count; i++){
+    const sx = p.getX(i), sy = p.getY(i), sz = p.getZ(i);
+    const th = Math.atan2(sz, sx), rho = Math.hypot(sx, sz), er = edgeR(th, s);
+    const x = sx*er, z = sz*er; let y, sh;
+    if (sy >= 0){ const t = topAt(x, z, sy, s); y = t.y; sh = smooth(.72, 1, rho)*.75 + t.crack*.9 + (1 - smooth(0, .25, sy))*.35; }
+    else { y = -T*0.5*Math.pow(-sy, 0.2); sh = .55 + smooth(.8, 1, rho)*.3; }
+    p.setXYZ(i, x, y, z); shade[i] = Math.min(sh, 1);
+  }
+  g.setAttribute('aShade', new THREE.BufferAttribute(shade, 1));
+  g.computeVertexNormals(); g.computeBoundingSphere();
+  return g;
+}
+
+/* ---------- cookie material with bites ---------- */
+const MAXB = 14;
+const U = {
+  uBites: { value: Array.from({length:MAXB}, () => new THREE.Vector4()) },
+  uBiteCount: { value: 0 },
+  uDough: { value: new THREE.Color(DF.flavours[0].dough) },
+  uDoughDark: { value: new THREE.Color(DF.flavours[0].dark) },
+  uCrumb: { value: new THREE.Color(DF.flavours[0].dough).multiplyScalar(1.15) },
+  uSeed: { value: 1 }
+};
+const GLSL_HEAD = `
+uniform vec4 uBites[${MAXB}]; uniform int uBiteCount; uniform vec3 uDough, uDoughDark, uCrumb; uniform float uSeed;
+varying vec3 vObj; varying float vShade;
+float h3(vec3 p){ p = fract(p*0.3183099 + .1); p *= 17.0; return fract(p.x*p.y*p.z*(p.x+p.y+p.z)); }
+float vn3(vec3 x){ vec3 i = floor(x), f = fract(x); f = f*f*(3.-2.*f);
+  return mix(mix(mix(h3(i),h3(i+vec3(1,0,0)),f.x),mix(h3(i+vec3(0,1,0)),h3(i+vec3(1,1,0)),f.x),f.y),
+             mix(mix(h3(i+vec3(0,0,1)),h3(i+vec3(1,0,1)),f.x),mix(h3(i+vec3(0,1,1)),h3(i+vec3(1,1,1)),f.x),f.y),f.z); }
+bool bitten(vec2 p){ for(int i=0;i<${MAXB};i++){ if(i>=uBiteCount) break; vec4 b=uBites[i]; vec2 d=p-b.xy; float a=atan(d.y,d.x);
+  float r=b.z*(1.0+0.065*sin(a*9.0+b.w)+0.03*sin(a*23.0+b.w*2.0)); if(length(d)<r) return true; } return false; }
+`;
+const cookieMat = new THREE.MeshStandardMaterial({ roughness:.85, metalness:0, side:THREE.DoubleSide, envMapIntensity:.35 });
+cookieMat.onBeforeCompile = sh => {
+  Object.assign(sh.uniforms, U);
+  sh.vertexShader = 'attribute float aShade;\nvarying vec3 vObj;\nvarying float vShade;\n' +
+    sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\nvObj = position; vShade = aShade;');
+  sh.fragmentShader = GLSL_HEAD + sh.fragmentShader
+    .replace('#include <clipping_planes_fragment>', '#include <clipping_planes_fragment>\nif (bitten(vObj.xz)) discard;')
+    .replace('vec4 diffuseColor = vec4( diffuse, opacity );', `
+      float n1 = vn3(vObj*13.0 + uSeed);
+      float n2 = vn3(vObj*52.0 + uSeed*3.1);
+      float shd = clamp(vShade + (n1-.5)*.55, 0., 1.);
+      vec3 col = mix(uDough, uDoughDark, shd);
+      col *= .86 + .26*n2;
+      float sugar = step(.9, n2) * step(0., vObj.y);
+      col = mix(col, col*1.3 + .04, sugar*.6);
+      if (!gl_FrontFacing) { col = uCrumb * (.72 + .45*vn3(vObj*40.0)); sugar = 0.; }
+      vec4 diffuseColor = vec4(col, opacity);`)
+    .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\nroughnessFactor = mix(.9, .45, sugar);');
+};
+
+const tilt = new THREE.Group(); scene.add(tilt);
+const spin = new THREE.Group(); tilt.add(spin);
+let seed = 1;
+const cookie = new THREE.Mesh(buildCookieGeo(seed), cookieMat);
+spin.add(cookie);
+
+/* ---------- inclusions ---------- */
+const incDefs = {
+  chip:  { geo: new THREE.IcosahedronGeometry(0.075, 0), mat: new THREE.MeshStandardMaterial({ roughness:.4, envMapIntensity:.6 }), sc:[1,.75,1], sink:.35 },
+  chunk: { geo: new THREE.IcosahedronGeometry(0.085, 0), mat: new THREE.MeshStandardMaterial({ roughness:.55, envMapIntensity:.5 }), sc:[1.2,.6,1], sink:.3 },
+  candy: { geo: new THREE.SphereGeometry(0.088, 24, 14), mat: new THREE.MeshPhysicalMaterial({ roughness:.32, clearcoat:1, clearcoatRoughness:.18, envMapIntensity:.9 }), sc:[1,.42,1], sink:.25 },
+  nut:   { geo: new THREE.SphereGeometry(0.082, 18, 12), mat: new THREE.MeshStandardMaterial({ roughness:.7, envMapIntensity:.4 }), sc:[1,.78,.9], sink:.4 },
+  oat:   { geo: new THREE.CylinderGeometry(0.06, 0.055, 0.014, 12), mat: new THREE.MeshStandardMaterial({ roughness:.8 }), sc:[1,1,.62], sink:.2 }
+};
+const incMesh = {}; let incData = [];
+for (const k in incDefs){ const m = new THREE.InstancedMesh(incDefs[k].geo, incDefs[k].mat, 40); m.count = 0; m.frustumCulled = false; spin.add(m); incMesh[k] = m; }
+const _m = new THREE.Matrix4(), _q = new THREE.Quaternion(), _v = new THREE.Vector3(), _s = new THREE.Vector3(), _e = new THREE.Euler(), _c = new THREE.Color();
+
+function rng(s){ return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+function buildInclusions(f){
+  const r = rng(seed*977 + 13); incData = [];
+  for (const k in incMesh) incMesh[k].count = 0;
+  const pts = [];
+  for (const group of f.inc){
+    let placed = 0, tries = 0;
+    while (placed < group.n && tries++ < 600){
+      const a = r()*Math.PI*2, rad = Math.sqrt(r())*0.84;
+      const x = Math.cos(a)*rad, z = Math.sin(a)*rad;
+      const minD = group.t === 'oat' ? .1 : .16;
+      if (pts.some(p => Math.hypot(p[0]-x, p[1]-z) < minD)) continue;
+      pts.push([x, z]);
+      const d = incDefs[group.t], m = incMesh[group.t], i = m.count++;
+      const size = .75 + r()*.5;
+      const y = surfaceY(x, z, seed) - d.sink*0.08*size + 0.01;
+      const flat = group.t === 'candy' || group.t === 'oat';
+      _e.set(flat ? (r()-.5)*.5 : r()*6, r()*6, flat ? (r()-.5)*.5 : r()*6);
+      incData.push({ m, i, x, y, z, q: new THREE.Quaternion().setFromEuler(_e), s: new THREE.Vector3(d.sc[0]*size, d.sc[1]*size, d.sc[2]*size), hidden:false });
+      _c.set(group.c[Math.floor(r()*group.c.length)]); m.setColorAt(i, _c);
+      placed++;
+    }
+  }
+  for (const k in incMesh) if (incMesh[k].instanceColor) incMesh[k].instanceColor.needsUpdate = true;
+}
+let incScale = 1;
+function applyInclusions(){
+  for (const d of incData){
+    const k = d.hidden ? 0 : incScale;
+    _s.copy(d.s).multiplyScalar(k); _v.set(d.x, d.y, d.z);
+    _m.compose(_v, d.q, _s); d.m.setMatrixAt(d.i, _m);
+  }
+  for (const k in incMesh) incMesh[k].instanceMatrix.needsUpdate = true;
+}
+
+/* ---------- bites ---------- */
+const bites = []; // {x,z,r,ph}
+function inBite(x, z, pad = 0){
+  for (const b of bites){ const dx = x-b.x, dz = z-b.z, a = Math.atan2(dz, dx);
+    const r = b.r*(1 + .065*Math.sin(a*9 + b.ph) + .03*Math.sin(a*23 + b.ph*2)) + pad; if (dx*dx + dz*dz < r*r) return true; }
+  return false;
+}
+function syncBites(){ U.uBiteCount.value = bites.length; bites.forEach((b,i) => U.uBites.value[i].set(b.x, b.z, b.r*b.grow, b.ph)); }
+function remaining(){ let n = 0, k = 0; for (let i = -12; i <= 12; i++) for (let j = -12; j <= 12; j++){ const x = i/12*.95, z = j/12*.95; if (x*x+z*z > .9) continue; n++; if (!inBite(x, z)) k++; } return k/n; }
+
+/* ---------- crumbs ---------- */
+const CR = 90;
+const crumbs = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(0.03, 0), new THREE.MeshStandardMaterial({ roughness:.9 }), CR);
+crumbs.frustumCulled = false; scene.add(crumbs);
+const crumbState = Array.from({length:CR}, () => ({ life:0, p:new THREE.Vector3(), v:new THREE.Vector3(), r:new THREE.Euler(), s:1 }));
+let crumbHead = 0;
+for (let i = 0; i < CR; i++){ _m.makeScale(0,0,0); crumbs.setMatrixAt(i, _m); crumbs.setColorAt(i, _c.set('#c8904a')); }
+function spawnCrumbs(lx, lz){
+  const base = _v.set(lx, surfaceY(lx*.9, lz*.9, seed)*.6, lz); spin.localToWorld(base);
+  const scl = tilt.scale.x;
+  for (let k = 0; k < 16; k++){
+    const c = crumbState[crumbHead], i = crumbHead; crumbHead = (crumbHead + 1) % CR;
+    c.life = 1.8 + Math.random()*.8; c.p.copy(base).add(new THREE.Vector3((Math.random()-.5)*.25*scl, (Math.random()-.5)*.15*scl, (Math.random()-.5)*.2*scl));
+    c.v.set((Math.random()-.5)*2.4, Math.random()*1.6 + .4, (Math.random())*1.4).multiplyScalar(scl);
+    c.r.set(Math.random()*6, Math.random()*6, 0); c.s = (.5 + Math.random()*.9)*scl;
+    crumbs.setColorAt(i, _c.copy(Math.random() < .5 ? U.uDough.value : U.uCrumb.value));
+  }
+  crumbs.instanceColor.needsUpdate = true;
+}
+function updateCrumbs(dt){
+  for (let i = 0; i < CR; i++){ const c = crumbState[i];
+    if (c.life <= 0){ _m.makeScale(0,0,0); crumbs.setMatrixAt(i, _m); continue; }
+    c.life -= dt; c.v.y -= 7*dt; c.p.addScaledVector(c.v, dt); c.r.x += dt*5; c.r.y += dt*3;
+    _q.setFromEuler(c.r); const k = Math.min(c.life*2, 1)*c.s; _s.set(k, k*.8, k); _m.compose(c.p, _q, _s); crumbs.setMatrixAt(i, _m);
+  }
+  crumbs.instanceMatrix.needsUpdate = true;
+}
+
+/* ---------- tweens ---------- */
+const tweens = [];
+const easeOut = t => 1 - Math.pow(1 - t, 4);
+const easeIO = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2;
+function tween(dur, fn, done, ease = easeOut){ if (reduce) dur = Math.min(dur, .05); tweens.push({ t:0, dur, fn, done, ease }); }
+function runTweens(dt){ for (let i = tweens.length - 1; i >= 0; i--){ const w = tweens[i]; w.t += dt; const k = Math.min(w.t/w.dur, 1); w.fn(w.ease(k)); if (k >= 1){ tweens.splice(i, 1); w.done && w.done(); } } }
+
+/* ---------- fresh cookie / flavour ---------- */
+let punch = 1, spinVel = 0, busy = false;
+function freshCookie(fi, colourTween = true){
+  busy = true;
+  const f = DF.flavours[fi];
+  tween(.28, k => { incScale = 1 - k; applyInclusions(); }, () => {
+    seed = (seed * 7 + 3) % 997 + 1; U.uSeed.value = seed;
+    const old = cookie.geometry; cookie.geometry = buildCookieGeo(seed); old.dispose();
+    bites.length = 0; syncBites();
+    buildInclusions(f); incScale = 0; applyInclusions();
+    tween(.9, k => { punch = .82 + .18*k; }, null, t => 1 + 2.7*Math.pow(t-1,3) + 1.7*Math.pow(t-1,2));
+    tween(.6, k => { incScale = k; applyInclusions(); }, () => { busy = false; });
+  });
+  if (colourTween){
+    const a = U.uDough.value.clone(), b = U.uDoughDark.value.clone(), ta = new THREE.Color(f.dough), tb = new THREE.Color(f.dark);
+    const tc = ta.clone().lerp(new THREE.Color('#fff2dc'), .18);
+    const ac = U.uCrumb.value.clone();
+    tween(.9, k => { U.uDough.value.copy(a).lerp(ta, k); U.uDoughDark.value.copy(b).lerp(tb, k); U.uCrumb.value.copy(ac).lerp(tc, k); }, null, easeIO);
+  }
+  spinVel += 7;
+}
+U.uCrumb.value.set(DF.flavours[0].dough).lerp(new THREE.Color('#fff2dc'), .18);
+buildInclusions(DF.flavours[0]); applyInclusions();
+document.addEventListener('df:flavour', e => freshCookie(e.detail));
+
+function takeBite(lx, lz){
+  if (busy) return;
+  let dl = Math.hypot(lx, lz), dx, dz;
+  if (dl < .12){ const a = Math.random()*Math.PI*2; dx = Math.cos(a); dz = Math.sin(a); dl = .12; } else { dx = lx/dl; dz = lz/dl; }
+  const r = .36 + Math.random()*.08;
+  const out = Math.max(dl + r*.5, 1.02 - r*.55);
+  const b = { x: dx*out, z: dz*out, r, ph: Math.random()*6.28, grow: 0 };
+  if (bites.length >= MAXB) return;
+  bites.push(b);
+  tween(.16, k => { b.grow = k; syncBites(); });
+  for (const d of incData) if (!d.hidden && inBite(d.x, d.z, .03)) d.hidden = true;
+  applyInclusions();
+  spawnCrumbs(b.x - dx*r*.6, b.z - dz*r*.6);
+  tween(.45, k => { punch = 1 - .06*Math.sin(k*Math.PI); });
+  spinVel += 1.4;
+  const left = remaining();
+  const finished = left < .3 || bites.length >= MAXB;
+  document.dispatchEvent(new CustomEvent('df:bite', { detail: { count: bites.length, left, finished } }));
+  if (finished) setTimeout(() => freshCookie(DF.flavour, false), 900);
+}
+
+/* ---------- mini bites pour ---------- */
+function flowerGeo(){
+  const sh = new THREE.Shape(), N = 8, R = .1;
+  for (let i = 0; i <= 96; i++){ const a = i/96*Math.PI*2, r = R*(1 + .14*Math.cos(a*N)); const x = Math.cos(a)*r, y = Math.sin(a)*r; i ? sh.lineTo(x, y) : sh.moveTo(x, y); }
+  const g = new THREE.ExtrudeGeometry(sh, { depth:.03, bevelEnabled:true, bevelThickness:.014, bevelSize:.012, bevelSegments:3, curveSegments:8 });
+  g.center(); return g;
+}
+function roundGeo(){ const g = new THREE.CylinderGeometry(.095, .1, .042, 28, 1); g.rotateX(Math.PI/2); return g; }
+const PN = 130;
+const pourMat = new THREE.MeshStandardMaterial({ roughness:.8, envMapIntensity:.4 });
+const pours = { flower: new THREE.InstancedMesh(flowerGeo(), pourMat, PN), round: new THREE.InstancedMesh(roundGeo(), pourMat, PN) };
+for (const k in pours){ pours[k].frustumCulled = false; scene.add(pours[k]); }
+const pState = Array.from({length:PN}, () => ({ x:0, y:0, z:0, vy:0, r:new THREE.Euler(Math.random()*6, Math.random()*6, Math.random()*6), w:new THREE.Vector3((Math.random()-.5)*4, (Math.random()-.5)*4, (Math.random()-.5)*2), s:.8 + Math.random()*.5, u:Math.random(), started:false }));
+function setPourColours(){
+  const b = DF.bites[DF.pour], base = new THREE.Color(b.c);
+  for (const k in pours){ for (let i = 0; i < PN; i++){ _c.copy(base).offsetHSL((Math.random()-.5)*.02, (Math.random()-.5)*.08, (Math.random()-.5)*.08); pours[k].setColorAt(i, _c); } pours[k].instanceColor.needsUpdate = true; }
+}
+setPourColours();
+document.addEventListener('df:pour', setPourColours);
+let pourVis = 0;
+function updatePour(dt, slot){
+  const shape = DF.bites[DF.pour].shape, m = pours[shape], other = pours[shape === 'flower' ? 'round' : 'flower'];
+  other.visible = false;
+  if (pourVis < .01 || !slot){ m.visible = false; return; }
+  m.visible = true;
+  const left = slot.x - slot.w*.42, right = slot.x + slot.w*.42, top = slot.y + slot.h*.5 + .4, bottom = slot.y - slot.h*.32;
+  const sc = Math.min(slot.w, slot.h) * .42;
+  for (let i = 0; i < PN; i++){
+    const p = pState[i];
+    if (!p.started){ p.x = left + p.u*(right-left); p.y = bottom + Math.random()*(top-bottom); p.z = (Math.random()-.5)*1.4; p.vy = -(.7 + Math.random()*.6); p.started = true; }
+    if (!reduce){ p.y += p.vy*dt*sc; p.r.x += p.w.x*dt; p.r.y += p.w.y*dt; p.r.z += p.w.z*dt; }
+    if (p.y < bottom){ p.y = top + Math.random()*.3; p.x = left + Math.random()*(right-left); }
+    if (p.y > top + 1) p.y = bottom + Math.random()*(top-bottom);
+    const fade = smooth(bottom, bottom + .5, p.y) * pourVis;
+    _q.setFromEuler(p.r); const k = p.s*fade*sc*.9; _s.set(k, k, k); _v.set(p.x, p.y, p.z);
+    _m.compose(_v, _q, _s); m.setMatrixAt(i, _m);
+  }
+  m.instanceMatrix.needsUpdate = true;
+}
+
+/* ---------- white-label box ---------- */
+const box = new THREE.Group(); scene.add(box);
+const black = new THREE.MeshStandardMaterial({ color:0x121010, roughness:.72, envMapIntensity:.5 });
+const W = 2.2, D = 1.0, H = .5, th = .03;
+function part(w, h, d, x, y, z, mat = black){ const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat); m.position.set(x, y, z); box.add(m); return m; }
+part(W, th, D, 0, 0, 0);
+part(th, H, D, -W/2, H/2, 0); part(th, H, D, W/2, H/2, 0);
+part(W, H, th, 0, H/2, -D/2);
+function makeCanvasTex(w, h){ const c = document.createElement('canvas'); c.width = w; c.height = h; const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return { c, ctx: c.getContext('2d'), t }; }
+const head = makeCanvasTex(1024, 600), lip = makeCanvasTex(1024, 110), label = makeCanvasTex(256, 512);
+const headMat = new THREE.MeshStandardMaterial({ map: head.t, roughness:.7, envMapIntensity:.5 });
+const header = new THREE.Mesh(new THREE.BoxGeometry(W, 1.3, th), [black, black, black, black, headMat, black]);
+header.position.set(0, H + .55, -D/2 - .02); header.rotation.x = -.12; box.add(header);
+const lipMat = new THREE.MeshStandardMaterial({ map: lip.t, roughness:.7 });
+const front = new THREE.Mesh(new THREE.BoxGeometry(W, H*.46, th), [black, black, black, black, lipMat, black]);
+front.position.set(0, H*.23, D/2); box.add(front);
+const wrap = new THREE.MeshPhysicalMaterial({ color:0xefe6dc, roughness:.28, transmission:0, clearcoat:.6, envMapIntensity:.8 });
+const labelMat = new THREE.MeshStandardMaterial({ map: label.t, roughness:.5 });
+for (let i = 0; i < 6; i++){
+  const pk = new THREE.Mesh(new THREE.BoxGeometry(.3, .72, .1), [wrap, wrap, wrap, wrap, labelMat, wrap]);
+  pk.position.set(-W/2 + .22 + i*.35, .4, -.15 + (i%2)*.04); pk.rotation.x = -.42; pk.rotation.z = (Math.random()-.5)*.04; box.add(pk);
+}
+function fitText(ctx, text, maxW, maxSize, font){ let s = maxSize; ctx.font = `${s}px ${font}`; while (ctx.measureText(text).width > maxW && s > 20){ s -= 4; ctx.font = `${s}px ${font}`; } return s; }
+function drawBrand(name){
+  const brand = (name || '').trim().toUpperCase() || 'YOUR BRAND';
+  let { ctx } = head; ctx.fillStyle = '#0f0d0c'; ctx.fillRect(0, 0, 1024, 600);
+  ctx.fillStyle = '#f6efe6'; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  const words = brand.split(/\s+/); let lines = [brand];
+  if (words.length > 1 && brand.length > 11){ const mid = Math.ceil(words.length/2); lines = [words.slice(0, mid).join(' '), words.slice(mid).join(' ')]; }
+  const size = Math.min(...lines.map(l => fitText(ctx, l, 860, lines.length > 1 ? 210 : 260, 'Anton')));
+  ctx.font = `${size}px Anton`;
+  const lh = size*.98, startY = 215 - (lines.length*lh)/2 + size*.78;
+  lines.forEach((l, i) => ctx.fillText(l, 512, startY + i*lh));
+  ctx.fillRect(312, startY + (lines.length - 1)*lh + 40, 400, 10);
+  head.t.needsUpdate = true;
+  ({ ctx } = lip); ctx.fillStyle = '#0f0d0c'; ctx.fillRect(0, 0, 1024, 110); ctx.fillStyle = '#f6efe6'; ctx.textAlign = 'center';
+  fitText(ctx, brand, 700, 64, 'Anton'); ctx.fillText(brand, 512, 80); lip.t.needsUpdate = true;
+  ({ ctx } = label); ctx.fillStyle = '#f3bfd0'; ctx.fillRect(0, 0, 256, 512);
+  ctx.save(); ctx.translate(150, 256); ctx.rotate(-Math.PI/2); ctx.fillStyle = '#140e0c'; ctx.textAlign = 'center';
+  fitText(ctx, brand, 420, 92, 'Anton'); ctx.fillText(brand, 0, 30); ctx.restore(); label.t.needsUpdate = true;
+}
+document.fonts.load('260px Anton').then(() => drawBrand('')).catch(() => drawBrand(''));
+drawBrand('');
+document.addEventListener('df:brand', e => { drawBrand(e.detail); spinBox += .9; });
+let spinBox = 0;
+
+/* ---------- slots & choreography ---------- */
+const slots = [...document.querySelectorAll('.slot[data-obj]')].map(el => ({ el, obj: el.dataset.obj, tilt: +el.dataset.tilt || 1.1, roll: +el.dataset.roll || 0, size: +el.dataset.size || 1 }));
+function measure(s){
+  const r = s.el.getBoundingClientRect(), wh = 2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*camera.position.z, k = wh/innerHeight;
+  const cy = r.top + r.height/2;
+  s.x = (r.left + r.width/2 - innerWidth/2)*k; s.y = -(cy - innerHeight/2)*k; s.w = r.width*k; s.h = r.height*k;
+  const d = Math.abs(cy - innerHeight/2)/(innerHeight*.8); s.wt = Math.max(0, 1 - d); s.wt = s.wt*s.wt*(3 - 2*s.wt);
+}
+const cur = { x:0, y:0, s:0, tilt:1.12, roll:0 };
+const curBox = { x:0, y:0, s:0 };
+const ptr = { x:0, y:0, tx:0, ty:0, px:-1, py:-1, moved:false };
+const damp = (a, b, l, dt) => a + (b - a)*Math.min(1, 1 - Math.exp(-l*dt));
+
+/* ---------- pointer / raycast ---------- */
+const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+const tag = document.getElementById('biteTag');
+function hitCookie(cx, cy){
+  if (!tilt.visible || tilt.scale.x < .05) return null;
+  ndc.set(cx/innerWidth*2 - 1, -(cy/innerHeight)*2 + 1); ray.setFromCamera(ndc, camera);
+  for (const h of ray.intersectObject(cookie, false)){ const l = cookie.worldToLocal(h.point.clone()); if (!inBite(l.x, l.z)) return l; }
+  return null;
+}
+const interactive = 'a,button,input,textarea,label,select,.band,.trade,.foot,.nav,.menu';
+addEventListener('pointermove', e => { ptr.tx = e.clientX/innerWidth*2 - 1; ptr.ty = e.clientY/innerHeight*2 - 1; ptr.px = e.clientX; ptr.py = e.clientY; ptr.moved = true; }, { passive:true });
+addEventListener('pointerdown', e => {
+  if (e.target.closest(interactive)) return;
+  const l = hitCookie(e.clientX, e.clientY); if (l) takeBite(l.x, l.z);
+});
+document.addEventListener('df:request-bite', () => { const a = Math.random()*Math.PI*2; takeBite(Math.cos(a)*.8, Math.sin(a)*.8); });
+let overCookie = false;
+function updateHover(){
+  if (!ptr.moved) return; ptr.moved = false;
+  const el = document.elementFromPoint(ptr.px, ptr.py);
+  const ok = el && !el.closest(interactive) && !!hitCookie(ptr.px, ptr.py);
+  if (ok !== overCookie){ overCookie = ok; tag.classList.toggle('on', ok); document.body.style.cursor = ok ? 'pointer' : ''; }
+  if (ok) tag.style.transform = `translate(${ptr.px}px, ${ptr.py}px) scale(1)`;
+  else tag.style.transform = `translate(${ptr.px}px, ${ptr.py}px) scale(0)`;
+}
+
+/* ---------- loop ---------- */
+addEventListener('resize', () => { camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight, false); });
+let last = performance.now(), first = true, intro = reduce ? 1 : 0;
+function frame(now){
+  const dt = Math.min(Math.max((now - last)/1000, 0), .05); last = now;
+  if (intro < 1) intro = Math.min(1, intro + dt/1.6);
+  runTweens(dt);
+
+  let sx = 0, sy = 0, ss = 0, st = 0, sr = 0, sw = 0, other = 0, boxSlot = null, pourSlot = null;
+  for (const s of slots){ measure(s);
+    if (s.obj === 'cookie' && s.wt > 0){ sx += s.x*s.wt; sy += s.y*s.wt; ss += Math.min(s.w, s.h)*s.size*s.wt; st += s.tilt*s.wt; sr += s.roll*s.wt; sw += s.wt; }
+    else if (s.obj !== 'cookie'){ other += s.wt; if (s.obj === 'box') boxSlot = s; if (s.obj === 'pour') pourSlot = s; }
+  }
+  // the lean slot shares the box section: let it win there
+  const vis = sw > 0 ? Math.min(1, sw/Math.max(sw + (other - (boxSlot ? boxSlot.wt : 0)), 1e-3)) : 0;
+  if (sw > 0){
+    const tx = sx/sw, ty = sy/sw, ts = ss/sw/2.15, tt = st/sw, tr = sr/sw;
+    if (first){ cur.x = tx; cur.y = ty; cur.s = ts*vis; cur.tilt = tt; cur.roll = tr; }
+    cur.x = damp(cur.x, tx, 7, dt); cur.y = damp(cur.y, ty, 7, dt); cur.s = damp(cur.s, ts*vis, 7, dt); cur.tilt = damp(cur.tilt, tt, 5, dt); cur.roll = damp(cur.roll, tr, 5, dt);
+  } else cur.s = damp(cur.s, 0, 7, dt);
+  ptr.x = damp(ptr.x, ptr.tx, 4, dt); ptr.y = damp(ptr.y, ptr.ty, 4, dt);
+  const introK = easeOut(intro);
+  const sc = cur.s*punch*(.6 + .4*introK);
+  tilt.visible = sc > .004;
+  tilt.position.set(cur.x, cur.y + (1 - introK)*-.6 + (reduce ? 0 : Math.sin(now/1400)*.03*cur.s), 0);
+  tilt.scale.setScalar(Math.max(sc, 1e-4));
+  tilt.rotation.set(cur.tilt + ptr.y*.28 - (1 - introK)*.8, 0, cur.roll - ptr.x*.3);
+  spinVel *= Math.exp(-dt*2.2);
+  if (!reduce) spin.rotation.y += dt*(.16 + spinVel);
+  else spin.rotation.y += dt*spinVel;
+
+  // box
+  if (boxSlot){
+    const bv = boxSlot.wt;
+    const bx = boxSlot.x - boxSlot.w*.08, by = boxSlot.y - boxSlot.h*.24;
+    if (first){ curBox.x = bx; curBox.y = by; }
+    curBox.x = damp(curBox.x, bx, 8, dt); curBox.y = damp(curBox.y, by, 8, dt);
+    curBox.s = damp(curBox.s, boxSlot.w/2.9*Math.min(1, bv*1.6), 7, dt);
+    box.visible = curBox.s > .01; box.position.set(curBox.x, curBox.y, -.9); box.scale.setScalar(Math.max(curBox.s, 1e-4));
+    spinBox *= Math.exp(-dt*1.6);
+    box.rotation.set(.32 + ptr.y*.08, -.42 + ptr.x*.35 + Math.sin(spinBox*2)*.15, 0);
+  }
+  // pour
+  pourVis = damp(pourVis, pourSlot ? Math.min(1, pourSlot.wt*1.5) : 0, 5, dt);
+  updatePour(dt, pourSlot);
+  updateCrumbs(dt);
+  updateHover();
+  renderer.render(scene, camera);
+  if (first){ first = false; window.__stageReady = true; document.documentElement.classList.remove('is-loading', 'no-3d'); }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

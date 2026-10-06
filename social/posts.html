@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Divine Foods Social Posts</title>
+<link rel="icon" href="../assets/stamp.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&display=swap" rel="stylesheet" crossorigin="anonymous">
+<style>
+:root{
+  --cocoa:#140e0c; --cocoa-2:#1c1411; --night:#0c0807;
+  --bone:#f6efe6; --mute:#bcab9f; --dim:#938075; --line:rgba(246,239,230,.16);
+  --pink:#f3bfd0; --pink-ink:#5b1a30; --butter:#e3b169; --ink:#140e0c;
+  --display:"Anton", "Bebas Neue", sans-serif;
+  --serif:"Bodoni Moda", "Didot", Georgia, serif;
+  --sans:"Hanken Grotesk", system-ui, sans-serif;
+  --k:.4;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#0a0706;color:var(--bone);font:400 15px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+
+/* ---------- workbench ---------- */
+.bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:14px 24px;background:rgba(10,7,6,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar strong{font:400 1.25rem/1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.bar span{color:var(--dim);font-size:.85rem}
+.bar label{margin-left:auto;display:flex;align-items:center;gap:.5rem;color:var(--mute);font-size:.85rem;cursor:pointer}
+.bench{display:flex;flex-wrap:wrap;gap:32px;justify-content:center;padding:32px 24px 64px}
+.cell{display:grid;gap:12px;justify-items:start}
+.frame{width:calc(1080px * var(--k));height:calc(1350px * var(--k));overflow:hidden;border-radius:4px;box-shadow:0 30px 60px -30px #000}
+.cell__foot{display:flex;gap:.5rem;align-items:center;width:100%}
+.cell__foot b{font:600 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-right:auto}
+.dl{all:unset;cursor:pointer;padding:.6rem .95rem;border-radius:999px;border:1.5px solid var(--line);font:600 .7rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.dl:hover{border-color:var(--bone)}
+.dl--pink{background:var(--pink);color:var(--ink);border-color:var(--pink)}
+.dl:disabled{opacity:.5;cursor:wait}
+
+/* ---------- post (always 1080 x 1350, scaled for preview) ---------- */
+.post{position:relative;width:1080px;height:1350px;overflow:hidden;transform:scale(var(--k));transform-origin:0 0;background:var(--cocoa);color:var(--bone);isolation:isolate}
+.post canvas{position:absolute;inset:0;width:1080px;height:1350px;z-index:2;display:block}
+.post .grain{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.post .glow{position:absolute;z-index:0;border-radius:50%;pointer-events:none}
+.post .top{position:absolute;z-index:4;left:72px;right:72px;top:64px;display:flex;justify-content:space-between;align-items:center}
+.post .top img{height:76px;width:auto}
+.post .tag{font:600 18px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.post em{font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:-.01em}
+
+/* 1: give in */
+.p1 .mark{position:absolute;z-index:0;inset:0;display:grid;place-items:center;font:400 470px/.8 var(--display);color:#21160f;letter-spacing:-.01em;transform:translateY(-14%)}
+.p1 .glow{left:50%;top:40%;width:1000px;height:1000px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(227,177,105,.2),rgba(243,191,208,.07) 55%,transparent 76%)}
+.p1 .hint{position:absolute;z-index:4;right:72px;top:190px;display:flex;gap:10px;align-items:flex-start;font:italic 400 38px/1.1 var(--serif);color:var(--pink);text-align:right}
+.p1 .hint svg{margin-top:20px}
+.p1 h1{position:absolute;z-index:4;left:72px;bottom:150px;margin:0;font:400 132px/.9 var(--display);text-transform:uppercase;max-width:9.5ch}
+.p1 h1 em{color:var(--pink)}
+.p1 .base{position:absolute;z-index:4;left:72px;right:72px;bottom:64px;display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:22px;font:500 22px/1.2 var(--sans);color:var(--mute)}
+.p1 .base b{color:var(--bone);font-weight:600}
+
+/* 2: seven ways */
+.p2 .glow{left:56%;top:52%;width:1100px;height:1100px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(227,177,105,.16),rgba(243,191,208,.06) 55%,transparent 76%)}
+.p2 h1{position:absolute;z-index:4;left:72px;top:176px;margin:0;font:400 150px/.88 var(--display);text-transform:uppercase}
+.p2 h1 em{color:var(--pink)}
+.p2 .num{position:absolute;z-index:1;right:40px;top:300px;font:400 560px/.8 var(--display);color:transparent;-webkit-text-stroke:2px rgba(246,239,230,.13)}
+.p2 .list{position:absolute;z-index:4;left:72px;right:72px;bottom:64px;margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.p2 .list li{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);font:400 40px/1 var(--display);text-transform:uppercase;color:var(--dim)}
+.p2 .list li span{font:italic 400 24px/1 var(--serif);text-transform:none;color:var(--mute)}
+.p2 .list li.on{color:var(--pink)}
+.p2 .spec{position:absolute;z-index:4;left:72px;top:500px;font:italic 400 32px/1.25 var(--serif);color:var(--mute);max-width:15ch}
+.p2 .spec b{font:600 22px/1 var(--sans);font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--bone);display:block;margin-top:18px}
+
+/* 3: shhh (pink field) */
+.p3{background:var(--pink);color:var(--ink)}
+.p3 .glow{right:-260px;bottom:-300px;width:1200px;height:1200px;background:radial-gradient(closest-side,rgba(255,240,230,.55),rgba(255,240,230,0) 75%)}
+.p3 .tag{color:var(--pink-ink)}
+.p3 h1{position:absolute;z-index:1;left:58px;top:196px;margin:0;font:400 400px/.82 var(--display);letter-spacing:.01em}
+.p3 h1 span{opacity:.55}.p3 h1 span+span{opacity:.26}
+.p3 .big{position:absolute;z-index:4;left:72px;top:560px;margin:0;font:400 64px/1.08 var(--serif);max-width:12ch}
+.p3 .big em{color:var(--pink-ink)}
+.p3 .label{position:absolute;z-index:4;left:72px;top:900px;display:inline-flex;flex-direction:column;gap:6px;padding:20px 30px 22px;background:var(--ink);color:var(--bone);transform:rotate(-4deg)}
+.p3 .label small{font:600 15px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
+.p3 .label b{font:400 64px/1 var(--display);text-transform:uppercase;font-weight:400}
+.p3 .label b::after{content:"";display:block;width:60%;height:6px;background:currentColor;margin-top:10px}
+.p3 .base{position:absolute;z-index:4;left:72px;right:72px;bottom:64px;display:grid;gap:10px;border-top:1.5px solid rgba(20,14,12,.25);padding-top:22px}
+.p3 .base p{margin:0;font:600 18px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pink-ink)}
+.p3 .base strong{font:600 30px/1.2 var(--sans)}
+
+@media (max-width:700px){.bench{padding:16px}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <strong>Divine Foods · Social</strong>
+  <span>3 posts · 1080 × 1350 (4:5)</span>
+  <label><input type="checkbox" id="actual"> Actual size</label>
+</header>
+
+<main class="bench">
+  <!-- POST 1 -->
+  <section class="cell">
+    <div class="frame"><article class="post p1" id="post-1" data-scene="hero">
+      <div class="glow"></div>
+      <div class="mark" aria-hidden="true">DIVINE</div>
+      <canvas></canvas>
+      <div class="top"><img src="../assets/wordmark-white.png" alt="Divine Foods Aust."><span class="tag">Est. 1997</span></div>
+      <div class="hint">Go on.<br>Take a bite.
+        <svg width="56" height="48" viewBox="0 0 46 40" fill="none" stroke="#f3bfd0" stroke-width="1.6" stroke-linecap="round"><path d="M44 2C30 4 14 12 8 32"/><path d="M2 24l6 10 9-6"/></svg>
+      </div>
+      <h1>Give in to a little bit of <em>sugar.</em></h1>
+      <div class="base"><span><b>Seductively good.</b> Café cookies &amp; Mini Bites</span><span>South Windsor NSW</span></div>
+      <div class="grain"></div>
+    </article></div>
+    <div class="cell__foot"><b>01 · Give in</b><button class="dl dl--pink" data-post="post-1" data-r="1">PNG 1080</button><button class="dl" data-post="post-1" data-r="2">PNG 2x</button></div>
+  </section>
+
+  <!-- POST 2 -->
+  <section class="cell">
+    <div class="frame"><article class="post p2" id="post-2" data-scene="range">
+      <div class="glow"></div>
+      <div class="num" aria-hidden="true">7</div>
+      <canvas></canvas>
+      <div class="top"><img src="../assets/wordmark-white.png" alt="Divine Foods Aust."><span class="tag">Café range</span></div>
+      <h1>Seven ways<br>to <em>misbehave.</em></h1>
+      <p class="spec">Individually wrapped, twelve to a counter-ready box.<b>12 × 55g · $40</b></p>
+      <ul class="list">
+        <li class="on">Red Carpet <span>Dressed for an entrance.</span></li>
+        <li>Triple Choc <span>Chocolate, then more chocolate.</span></li>
+        <li>Daydream Macadamia <span>Soft focus, golden edges.</span></li>
+        <li>Galaxy · Midnight Galaxy · Midnight Mac · Oatie Anzac</li>
+      </ul>
+      <div class="grain"></div>
+    </article></div>
+    <div class="cell__foot"><b>02 · The range</b><button class="dl dl--pink" data-post="post-2" data-r="1">PNG 1080</button><button class="dl" data-post="post-2" data-r="2">PNG 2x</button></div>
+  </section>
+
+  <!-- POST 3 -->
+  <section class="cell">
+    <div class="frame"><article class="post p3" id="post-3" data-scene="shhh">
+      <div class="glow"></div>
+      <h1 aria-label="Shhh.">SH<span>H</span><span>H.</span></h1>
+      <canvas></canvas>
+      <div class="top"><img src="../assets/wordmark-black.png" alt="Divine Foods Aust."><span class="tag">Contract baking</span></div>
+      <p class="big">We can make your cookies for you and <em>nobody will know.</em></p>
+      <div class="label"><small>Your brand here</small><b>Your brand</b></div>
+      <div class="base"><p>Talk to us, quietly</p><strong>(02) 4587 8348 · info@divinefoods.com.au</strong></div>
+      <div class="grain"></div>
+    </article></div>
+    <div class="cell__foot"><b>03 · Shhh</b><button class="dl dl--pink" data-post="post-3" data-r="1">PNG 1080</button><button class="dl" data-post="post-3" data-r="2">PNG 2x</button></div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<script>
+/* preview scale + export */
+(function(){
+  const actual = document.getElementById('actual');
+  function fit(){
+    if (actual.checked) return document.documentElement.style.setProperty('--k', 1);
+    const w = innerWidth;
+    const k = w > 1300 ? Math.min(.5, (w - 48 - 64)/3/1080) : w > 760 ? (w - 48 - 32)/2/1080 : (w - 32)/1080;
+    document.documentElement.style.setProperty('--k', k.toFixed(4));
+  }
+  if (/[?&]actual/.test(location.search)) actual.checked = true;
+  addEventListener('resize', fit); actual.addEventListener('change', fit); fit();
+
+  document.querySelectorAll('.dl').forEach(b => b.addEventListener('click', async () => {
+    const node = document.getElementById(b.dataset.post), r = +b.dataset.r;
+    const label = b.textContent; b.disabled = true; b.textContent = 'Rendering…';
+    try {
+      await document.fonts.ready;
+      const url = await htmlToImage.toPng(node, { width:1080, height:1350, pixelRatio:r, style:{ transform:'none' }, cacheBust:true });
+      const a = document.createElement('a'); a.href = url; a.download = `divine-foods-${b.dataset.post}${r > 1 ? '@2x' : ''}.png`; a.click();
+    } catch (e) {
+      console.error(e);
+      alert('Export failed. Open this page through a local server (e.g. "npx serve" in the project folder) rather than file://, then try again.');
+    }
+    b.disabled = false; b.textContent = label;
+  }));
+})();
+</script>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+/* flavours: same data as the site */
+const F = {
+  galaxy:   { dough:'#d9a86b', dark:'#9a6331', inc:[{t:'candy',n:14,c:['#f2c230','#e8572a','#e0457b','#4aa564','#3d7bd6','#f29a2e']},{t:'chip',n:4,c:['#3a2014']}] },
+  redcarpet:{ dough:'#9c2b2c', dark:'#561417', inc:[{t:'chunk',n:12,c:['#f4ead8','#efe2c9']}] },
+  triple:   { dough:'#5c3626', dark:'#2b180f', inc:[{t:'chip',n:10,c:['#24120b']},{t:'chip',n:6,c:['#7a4a2a']},{t:'chunk',n:6,c:['#f2e6cf']}] },
+  daydream: { dough:'#e2bb80', dark:'#a8723c', inc:[{t:'nut',n:9,c:['#efdcb1','#e6cc96']},{t:'chunk',n:7,c:['#f6ecd9']}] },
+  midmac:   { dough:'#3b2219', dark:'#1c0f0a', inc:[{t:'nut',n:9,c:['#efdcb1','#e3c993']},{t:'chunk',n:7,c:['#f6ecd9']}] }
+};
+
+/* ---------- noise + geometry (from the site) ---------- */
+function hash2(i, j, s){ let h = (Math.imul(i, 374761393) + Math.imul(j, 668265263) + Math.imul(s, 2147483647)) | 0; h = Math.imul(h ^ (h >>> 13), 1274126177); h ^= h >>> 16; return (h >>> 0) / 4294967296; }
+function vnoise(x, y, s){ const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi; const u = xf*xf*(3-2*xf), v = yf*yf*(3-2*yf);
+  const a = hash2(xi,yi,s), b = hash2(xi+1,yi,s), c = hash2(xi,yi+1,s), d = hash2(xi+1,yi+1,s); return a + (b-a)*u + (c-a)*v + (a-b-c+d)*u*v; }
+function fbm(x, y, s){ let t = 0, a = .5, f = 1; for (let o = 0; o < 4; o++){ t += a*vnoise(x*f, y*f, s+o*17); f *= 2.03; a *= .5; } return t / .9375; }
+const smooth = (a,b,x) => { const t = Math.min(Math.max((x-a)/(b-a),0),1); return t*t*(3-2*t); };
+const T = 0.27;
+function edgeR(th, s){ return 1 + 0.03*(fbm(Math.cos(th)*1.4+3, Math.sin(th)*1.4+3, s) - .5)*2 + 0.012*(vnoise(Math.cos(th)*6+9, Math.sin(th)*6+9, s) - .5)*2; }
+function topAt(x, z, sy, s){
+  const dome = T*Math.pow(sy, 0.5), fade = smooth(0, 0.35, sy);
+  const bumps = (fbm(x*2.3+11, z*2.3+5, s) - .5)*0.1;
+  const ridge = 1 - Math.abs(fbm(x*1.7+31, z*1.7+13, s+7)*2 - 1), crack = Math.pow(ridge, 9);
+  return { y: dome + (bumps - crack*0.055)*fade, crack };
+}
+function surfaceY(x, z, s){ const th = Math.atan2(z, x); const ru = Math.hypot(x, z) / edgeR(th, s); if (ru >= 1) return 0; return topAt(x, z, Math.sqrt(1 - ru*ru), s).y; }
+function buildCookieGeo(s){
+  let g = new THREE.SphereGeometry(1, 220, 110); g.deleteAttribute('uv'); g.deleteAttribute('normal');
+  g = mergeVertices(g, 1e-5);
+  const p = g.attributes.position, shade = new Float32Array(p.count);
+  for (let i = 0; i < p.count; i++){
+    const sx = p.getX(i), sy = p.getY(i), sz = p.getZ(i);
+    const th = Math.atan2(sz, sx), rho = Math.hypot(sx, sz), er = edgeR(th, s);
+    const x = sx*er, z = sz*er; let y, sh;
+    if (sy >= 0){ const t = topAt(x, z, sy, s); y = t.y; sh = smooth(.72, 1, rho)*.75 + t.crack*.9 + (1 - smooth(0, .25, sy))*.35; }
+    else { y = -T*0.5*Math.pow(-sy, 0.2); sh = .55 + smooth(.8, 1, rho)*.3; }
+    p.setXYZ(i, x, y, z); shade[i] = Math.min(sh, 1);
+  }
+  g.setAttribute('aShade', new THREE.BufferAttribute(shade, 1));
+  g.computeVertexNormals(); g.computeBoundingSphere();
+  return g;
+}
+
+/* ---------- cookie material with bites ---------- */
+const MAXB = 6;
+const GLSL_HEAD = `
+uniform vec4 uBites[${MAXB}]; uniform int uBiteCount; uniform vec3 uDough, uDoughDark, uCrumb; uniform float uSeed;
+varying vec3 vObj; varying float vShade;
+float h3(vec3 p){ p = fract(p*0.3183099 + .1); p *= 17.0; return fract(p.x*p.y*p.z*(p.x+p.y+p.z)); }
+float vn3(vec3 x){ vec3 i = floor(x), f = fract(x); f = f*f*(3.-2.*f);
+  return mix(mix(mix(h3(i),h3(i+vec3(1,0,0)),f.x),mix(h3(i+vec3(0,1,0)),h3(i+vec3(1,1,0)),f.x),f.y),
+             mix(mix(h3(i+vec3(0,0,1)),h3(i+vec3(1,0,1)),f.x),mix(h3(i+vec3(0,1,1)),h3(i+vec3(1,1,1)),f.x),f.y),f.z); }
+bool bitten(vec2 p){ for(int i=0;i<${MAXB};i++){ if(i>=uBiteCount) break; vec4 b=uBites[i]; vec2 d=p-b.xy; float a=atan(d.y,d.x);
+  float r=b.z*(1.0+0.065*sin(a*9.0+b.w)+0.03*sin(a*23.0+b.w*2.0)); if(length(d)<r) return true; } return false; }
+`;
+function cookieMaterial(U){
+  const m = new THREE.MeshStandardMaterial({ roughness:.85, metalness:0, side:THREE.DoubleSide, envMapIntensity:.35 });
+  m.onBeforeCompile = sh => {
+    Object.assign(sh.uniforms, U);
+    sh.vertexShader = 'attribute float aShade;\nvarying vec3 vObj;\nvarying float vShade;\n' +
+      sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\nvObj = position; vShade = aShade;');
+    sh.fragmentShader = GLSL_HEAD + sh.fragmentShader
+      .replace('#include <clipping_planes_fragment>', '#include <clipping_planes_fragment>\nif (bitten(vObj.xz)) discard;')
+      .replace('vec4 diffuseColor = vec4( diffuse, opacity );', `
+        float n1 = vn3(vObj*13.0 + uSeed);
+        float n2 = vn3(vObj*52.0 + uSeed*3.1);
+        float shd = clamp(vShade + (n1-.5)*.55, 0., 1.);
+        vec3 col = mix(uDough, uDoughDark, shd);
+        col *= .86 + .26*n2;
+        float sugar = step(.9, n2) * step(0., vObj.y);
+        col = mix(col, col*1.3 + .04, sugar*.6);
+        if (!gl_FrontFacing) { col = uCrumb * (.72 + .45*vn3(vObj*40.0)); sugar = 0.; }
+        vec4 diffuseColor = vec4(col, opacity);`)
+      .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\nroughnessFactor = mix(.9, .45, sugar);');
+  };
+  return m;
+}
+
+const incDefs = {
+  chip:  { geo: new THREE.IcosahedronGeometry(0.075, 0), mk: () => new THREE.MeshStandardMaterial({ roughness:.4, envMapIntensity:.6 }), sc:[1,.75,1], sink:.35 },
+  chunk: { geo: new THREE.IcosahedronGeometry(0.085, 0), mk: () => new THREE.MeshStandardMaterial({ roughness:.55, envMapIntensity:.5 }), sc:[1.2,.6,1], sink:.3 },
+  candy: { geo: new THREE.SphereGeometry(0.088, 24, 14), mk: () => new THREE.MeshPhysicalMaterial({ roughness:.32, clearcoat:1, clearcoatRoughness:.18, envMapIntensity:.9 }), sc:[1,.42,1], sink:.25 },
+  nut:   { geo: new THREE.SphereGeometry(0.082, 18, 12), mk: () => new THREE.MeshStandardMaterial({ roughness:.7, envMapIntensity:.4 }), sc:[1,.78,.9], sink:.4 },
+  oat:   { geo: new THREE.CylinderGeometry(0.06, 0.055, 0.014, 12), mk: () => new THREE.MeshStandardMaterial({ roughness:.8 }), sc:[1,1,.62], sink:.2 }
+};
+function rng(s){ return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+
+/* biteAngles: screen-space directions (deg, 0 = right, 90 = up) where a bite is taken from the rim */
+function makeCookie(f, seed, biteAngles = []){
+  const bites = biteAngles.map((deg, i) => {
+    const a = -deg*Math.PI/180, r = .4 + (i%2)*.05;
+    return { x: Math.cos(a)*1.0, z: Math.sin(a)*1.0, r, ph: 1.3 + i*2.1 };
+  });
+  const inBite = (x, z, pad = 0) => bites.some(b => { const dx = x-b.x, dz = z-b.z, a = Math.atan2(dz, dx);
+    const r = b.r*(1 + .065*Math.sin(a*9 + b.ph) + .03*Math.sin(a*23 + b.ph*2)) + pad; return dx*dx + dz*dz < r*r; });
+  const U = {
+    uBites: { value: Array.from({length:MAXB}, (_, i) => bites[i] ? new THREE.Vector4(bites[i].x, bites[i].z, bites[i].r, bites[i].ph) : new THREE.Vector4()) },
+    uBiteCount: { value: bites.length },
+    uDough: { value: new THREE.Color(f.dough) },
+    uDoughDark: { value: new THREE.Color(f.dark) },
+    uCrumb: { value: new THREE.Color(f.dough).lerp(new THREE.Color('#fff2dc'), .18) },
+    uSeed: { value: seed }
+  };
+  const group = new THREE.Group();
+  group.add(new THREE.Mesh(buildCookieGeo(seed), cookieMaterial(U)));
+
+  const r = rng(seed*977 + 13), pts = [], _m = new THREE.Matrix4(), _q = new THREE.Quaternion(), _e = new THREE.Euler(), _c = new THREE.Color();
+  const meshes = {};
+  for (const g of f.inc){
+    const d = incDefs[g.t];
+    const m = meshes[g.t] || (meshes[g.t] = Object.assign(new THREE.InstancedMesh(d.geo, d.mk(), 40), { count:0 }));
+    let placed = 0, tries = 0;
+    while (placed < g.n && tries++ < 600){
+      const a = r()*Math.PI*2, rad = Math.sqrt(r())*0.84, x = Math.cos(a)*rad, z = Math.sin(a)*rad;
+      if (pts.some(p => Math.hypot(p[0]-x, p[1]-z) < (g.t === 'oat' ? .1 : .16))) continue;
+      pts.push([x, z]);
+      const size = .75 + r()*.5, y = surfaceY(x, z, seed) - d.sink*0.08*size + 0.01;
+      const flat = g.t === 'candy' || g.t === 'oat';
+      _e.set(flat ? (r()-.5)*.5 : r()*6, r()*6, flat ? (r()-.5)*.5 : r()*6); _q.setFromEuler(_e);
+      const col = g.c[Math.floor(r()*g.c.length)];
+      placed++;
+      if (inBite(x, z, .03)) continue;
+      const i = m.count++;
+      _m.compose(new THREE.Vector3(x, y, z), _q, new THREE.Vector3(d.sc[0]*size, d.sc[1]*size, d.sc[2]*size));
+      m.setMatrixAt(i, _m); m.setColorAt(i, _c.set(col));
+    }
+  }
+  for (const k in meshes) group.add(meshes[k]);
+
+  // a few crumbs resting near each bite
+  const crumbs = [];
+  for (const b of bites){ for (let k = 0; k < 7; k++) crumbs.push(b); }
+  if (crumbs.length){
+    const cm = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(0.03, 0), new THREE.MeshStandardMaterial({ roughness:.9 }), crumbs.length);
+    const cr = rng(seed*31 + 7);
+    crumbs.forEach((b, i) => {
+      const dl = Math.hypot(b.x, b.z), ix = b.x - b.x/dl*b.r*(.95 + cr()*.25), iz = b.z - b.z/dl*b.r*(.95 + cr()*.25);
+      const x = ix + (cr()-.5)*.5, z = iz + (cr()-.5)*.25;
+      if (inBite(x, z) || Math.hypot(x, z) > .95) { _m.makeScale(0,0,0); cm.setMatrixAt(i, _m); return; }
+      const s = .6 + cr()*1.1;
+      _e.set(cr()*6, cr()*6, cr()*6); _q.setFromEuler(_e);
+      _m.compose(new THREE.Vector3(x, surfaceY(x, z, seed) + .01, z), _q, new THREE.Vector3(s, s*.8, s));
+      cm.setMatrixAt(i, _m); cm.setColorAt(i, _c.set(cr() < .5 ? f.dough : U.uCrumb.value.getStyle()));
+    });
+    group.add(cm);
+  }
+  return group;
+}
+
+/* ---------- scenes ----------
+   camera at z=6, fov 35, 4:5 frame → visible ≈ 3.02 wide × 3.78 tall (x ±1.51, y ±1.89) */
+const scenes = {
+  hero: { rimHex:0xf3bfd0, cookies:[
+    { f:'galaxy', seed:1, x:.02, y:.5, s:.9, tilt:1.08, roll:.05, spin:0, bites:[38] }
+  ]},
+  range: { rimHex:0xf3bfd0, cookies:[
+    { f:'triple',    seed:41, x:1.08, y:.12,  s:.56, tilt:1.25, roll:-.2, spin:1.2, bites:[] },
+    { f:'daydream',  seed:73, x:-.55, y:-.52, s:.56, tilt:.95,  roll:.25, spin:2.4, bites:[200] },
+    { f:'redcarpet', seed:9,  x:.36,  y:-.3,  s:.78, tilt:1.12, roll:-.06, spin:.6, bites:[20] }
+  ]},
+  shhh: { rimHex:0xfff0f4, cookies:[
+    { f:'midmac', seed:23, x:.86, y:-.62, s:.92, tilt:1.18, roll:-.18, spin:.9, bites:[150, 112] }
+  ]}
+};
+
+function renderPost(post){
+  const cfg = scenes[post.dataset.scene], canvas = post.querySelector('canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true, preserveDrawingBuffer:true });
+  renderer.setPixelRatio(2);
+  renderer.setSize(1080, 1350, false);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.08;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, 1080/1350, .1, 60); camera.position.set(0, 0, 6);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), .04).texture;
+  scene.add(new THREE.HemisphereLight(0xffe7d2, 0x2a1510, .7));
+  const key = new THREE.DirectionalLight(0xfff0de, 2.4); key.position.set(3, 4, 5); scene.add(key);
+  const rim = new THREE.DirectionalLight(cfg.rimHex, 2.2); rim.position.set(-4, 2, -3); scene.add(rim);
+  const fill = new THREE.DirectionalLight(0xe3b169, .6); fill.position.set(-3, -2, 4); scene.add(fill);
+
+  for (const c of cfg.cookies){
+    const tilt = new THREE.Group(), spin = new THREE.Group();
+    tilt.position.set(c.x, c.y, 0); tilt.scale.setScalar(c.s); tilt.rotation.set(c.tilt, 0, c.roll);
+    // spin the cookie body, but keep bites where the scene asked for them on screen
+    const ck = makeCookie(F[c.f], c.seed, c.bites.map(a => a - c.spin*180/Math.PI));
+    spin.rotation.y = c.spin; spin.add(ck); tilt.add(spin); scene.add(tilt);
+  }
+  renderer.render(scene, camera);
+}
+
+document.querySelectorAll('.post').forEach(renderPost);
+</script>
+</body>
+</html>

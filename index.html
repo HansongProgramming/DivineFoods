@@ -244,6 +244,78 @@ html.no-3d .needs-3d{display:none!important}
 .family img.wide{height:30px}
 .foot__base{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:2.2rem;color:var(--dim);font-size:.85rem}
 
+/* ---------- kinetic type ----------
+   Hidden states live under html.kin only, which JS adds when motion is allowed,
+   so the page reads complete without scripts or with reduced motion. */
+.w{display:inline-block;clip-path:inset(-.4em -.25em -.2em -.25em)}
+.wi{display:inline-block;transform-origin:0 100%}
+.kin .k .wi{transform:translateY(135%) rotate(6deg);transition:transform 1.05s var(--ease) calc(var(--d,0s) + var(--i)*60ms)}
+.kin .k.in .wi{transform:none}
+.kin .hero h1{--d:.45s}
+.kin .k-fade{opacity:0;transform:translateY(14px);filter:blur(6px);transition:opacity .9s var(--ease) var(--d,0s),transform .9s var(--ease) var(--d,0s),filter .9s var(--ease) var(--d,0s)}
+.kin .k-fade.in{opacity:1;transform:none;filter:none}
+.kin .hero__side{--d:.95s}
+.kin .hint{--d:1.3s}
+.kin .k-list>*{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease) calc(var(--i)*55ms + .15s),transform .7s var(--ease) calc(var(--i)*55ms + .15s)}
+.kin .k-list.in>*{opacity:1;transform:none}
+
+/* hero wordmark scatters on scroll (uses translate/rotate so the entrance keyframes stay intact) */
+.hero__mark i{will-change:translate}
+
+/* button + nav label roll */
+.roll{display:inline-block;overflow:hidden;line-height:1.6;height:1.6em;margin-block:-.3em;vertical-align:middle}
+.roll>span{display:block;text-shadow:0 1.6em 0 currentColor;transition:transform .5s var(--ease)}
+a:hover>.roll>span,button:hover>.roll>span,a:focus-visible>.roll>span{transform:translateY(-1.6em)}
+
+/* ticker */
+.ticker{position:relative;z-index:0;overflow:hidden;padding:clamp(40px,7vh,80px) 0;margin-block:calc(clamp(40px,7vh,80px)*-1 + clamp(10px,3vh,30px));pointer-events:none;user-select:none}
+.ticker__band{margin:0 -6vw;padding:clamp(18px,3vh,34px) 0;transform:rotate(-3.2deg);border-block:1px solid var(--line);overflow:hidden}
+.ticker__track{display:flex;width:max-content}
+.ticker__group{display:flex;align-items:center;gap:clamp(1.1rem,2.2vw,2.2rem);padding-right:clamp(1.1rem,2.2vw,2.2rem);flex:none}
+.ticker b{font:400 clamp(3.2rem,8.4vw,7.6rem)/1 var(--display);text-transform:uppercase;color:var(--bone);white-space:nowrap}
+.ticker b.hollow{color:transparent;-webkit-text-stroke:1.5px rgba(246,239,230,.55)}
+.ticker em{font:italic 400 clamp(2.8rem,7.4vw,6.6rem)/1 var(--serif);color:var(--pink);white-space:nowrap;padding-right:.08em}
+.ticker svg{width:clamp(1.5rem,3.4vw,2.8rem);height:auto;color:var(--butter);flex:none}
+
+/* confession: words light up as you read down */
+.cw{transition:opacity .25s linear}
+
+/* flavour name: split-flap roll */
+.flap{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.04em}
+.flap>span{display:inline-block;animation:flap .62s var(--ease) both;animation-delay:calc(var(--i)*26ms)}
+@keyframes flap{from{transform:translateY(105%) rotateX(-70deg);opacity:.3}}
+.range__line.soft{animation:soft .7s var(--ease) both .12s}
+@keyframes soft{from{opacity:0;filter:blur(8px);transform:translateY(.35em)}}
+
+/* SHHH: letters arrive, then the tail goes quiet */
+.kin .shh .wi{transition-duration:.9s;transition-delay:calc(var(--i)*70ms)}
+.kin .shh.in .w:nth-child(3) .wi{animation:hush 1.6s var(--ease) 1.1s both;--q:.55}
+.kin .shh.in .w:nth-child(4) .wi{animation:hush 1.6s var(--ease) 1.35s both;--q:.26}
+@keyframes hush{to{opacity:var(--q);transform:scale(.92) translateY(.03em)}}
+.shh .w{clip-path:inset(-.4em -.3em -.1em -.3em)}
+
+/* steps draw themselves in sequence */
+.kin .k-steps li{opacity:0;transform:translateX(-10px);transition:opacity .6s var(--ease) calc(var(--i)*.28s + .2s),transform .6s var(--ease) calc(var(--i)*.28s + .2s)}
+.kin .k-steps li:not(:last-child)::after{transform:scaleX(0);transform-origin:0 50%;transition:transform .5s var(--ease) calc(var(--i)*.28s + .45s)}
+.kin .k-steps.in li{opacity:1;transform:none}
+.kin .k-steps.in li::after{transform:none}
+
+/* fields (bone band, pink trade) open as they arrive */
+.kin .band,.kin .trade{clip-path:inset(0 calc(var(--o,0)*clamp(8px,4vw,64px)) round calc(var(--o,0)*48px))}
+
+/* footer wordmark wipes up */
+.kin .foot__mark{clip-path:inset(100% 0 0 0);transform:translateY(12%);transition:clip-path 1.3s var(--ease),transform 1.3s var(--ease)}
+.kin .foot__mark.in{clip-path:inset(-1% 0 0 0);transform:none}
+
+/* mobile menu links cascade */
+.menu a,.menu p{transform:translateY(30px);opacity:0;transition:transform .6s var(--ease),opacity .6s var(--ease)}
+.menu.open a,.menu.open p{transform:none;opacity:1}
+.menu.open a:nth-child(1){transition-delay:.18s}.menu.open a:nth-child(2){transition-delay:.24s}.menu.open a:nth-child(3){transition-delay:.3s}
+.menu.open a:nth-child(4){transition-delay:.36s}.menu.open a:nth-child(5){transition-delay:.42s}.menu.open p{transition-delay:.5s}
+
+.range__list button span{transform:translateX(-8px);transition:opacity .3s,transform .4s var(--ease)}
+.range__list button[aria-pressed="true"] span{transform:none}
+
 /* ---------- responsive ---------- */
 @media (max-width:980px){
   .nav__links,.nav .btn--pink{display:none}
@@ -339,6 +411,23 @@ html.no-3d .needs-3d{display:none!important}
       </div>
     </div>
   </section>
+
+  <!-- TICKER (decorative: taglines the brand already uses) -->
+  <div class="ticker" id="ticker" aria-hidden="true">
+    <svg width="0" height="0" style="position:absolute">
+      <defs><mask id="biteMask"><rect width="24" height="24" fill="#fff"/><circle cx="21.5" cy="4.5" r="5.2" fill="#000"/><circle cx="23.5" cy="11" r="3.6" fill="#000"/></mask>
+      <symbol id="bitten" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor" mask="url(#biteMask)"/></symbol></defs>
+    </svg>
+    <div class="ticker__band"><div class="ticker__track">
+      <div class="ticker__group">
+        <b>Seductively good</b><svg viewBox="0 0 24 24"><use href="#bitten"/></svg>
+        <em>give in</em><svg viewBox="0 0 24 24"><use href="#bitten"/></svg>
+        <b class="hollow">Est. 1997</b><svg viewBox="0 0 24 24"><use href="#bitten"/></svg>
+        <em>a little bit of sugar</em><svg viewBox="0 0 24 24"><use href="#bitten"/></svg>
+        <b>South Windsor NSW</b><svg viewBox="0 0 24 24"><use href="#bitten"/></svg>
+      </div>
+    </div></div>
+  </div>
 
   <!-- CONFESSION -->
   <section class="confess layer" aria-label="About Divine Foods">
@@ -590,6 +679,130 @@ window.DF = {
 
   // WebGL fallback if the stage never comes up
   setTimeout(() => { if (!window.__stageReady) document.documentElement.classList.add('no-3d'); document.documentElement.classList.remove('is-loading'); }, 4000);
+})();
+</script>
+
+<script>
+/* ---------- kinetic type + scroll choreography ---------- */
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+
+  // label roll on buttons and nav links (works with or without reduced motion: it is hover feedback)
+  $$('.btn, .nav__links a').forEach(el => {
+    const t = [...el.childNodes].find(n => n.nodeType === 3 && n.textContent.trim());
+    if (!t) return;
+    const r = document.createElement('span'); r.className = 'roll';
+    const s = document.createElement('span'); s.textContent = t.textContent.trim();
+    r.appendChild(s); t.replaceWith(r, ' ');
+  });
+
+  if (reduce) return;
+  document.documentElement.classList.add('kin');
+
+  // split text nodes into masked words (or chars), keeping <em> and <br> in place
+  function split(el, chars = false){
+    let i = 0;
+    (function walk(node){
+      [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3){
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) return frag.appendChild(document.createTextNode(part));
+            (chars ? [...part] : [part]).forEach(p => {
+              const w = document.createElement('span'), wi = document.createElement('span');
+              w.className = 'w'; wi.className = 'wi'; wi.style.setProperty('--i', i++); wi.textContent = p;
+              w.appendChild(wi); frag.appendChild(w);
+            });
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1 && n.tagName !== 'BR') walk(n);
+      });
+    })(el);
+  }
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin:'0px 0px -12% 0px' });
+  const watch = (el, cls) => { if (!el) return; cls && el.classList.add(cls); io.observe(el); };
+
+  $$('.hero h1, .h2').forEach(h => { split(h); watch(h, 'k'); });
+  const shh = $('.shh'); shh.setAttribute('aria-label', 'Shhh.'); split(shh, true); watch(shh, 'k');
+  watch($('.hero__side'), 'k-fade'); watch($('.hint'), 'k-fade'); watch($('.confess small'), 'k-fade');
+  [$('#flavourList'), $('#tubList')].forEach(l => { [...l.children].forEach((c, i) => c.style.setProperty('--i', Math.min(i, 8))); watch(l, 'k-list'); });
+  const steps = $('.steps'); [...steps.children].forEach((c, i) => c.style.setProperty('--i', i)); watch(steps, 'k-steps');
+  watch($('.foot__mark'));
+
+  // flavour name: split-flap roll; strapline softens in
+  const fName = $('#fName'), fLine = $('#fLine');
+  function flap(text){
+    fName.textContent = '';
+    [...text].forEach((c, i) => {
+      if (c === ' ') return fName.append(' ');
+      const o = document.createElement('span'), s = document.createElement('span');
+      o.className = 'flap'; s.textContent = c; s.style.setProperty('--i', i); o.appendChild(s); fName.appendChild(o);
+    });
+    fLine.classList.remove('soft'); void fLine.offsetWidth; fLine.classList.add('soft');
+  }
+  document.addEventListener('df:flavour', e => flap(DF.flavours[e.detail].name));
+  new IntersectionObserver((es, o) => { if (es[0].isIntersecting){ flap(fName.textContent); o.disconnect(); } }, { rootMargin:'0px 0px -15% 0px' }).observe(fName);
+
+  // confession: one span per word, lit by reading progress
+  const conf = $('.confess p'); split(conf);
+  const cws = [...conf.querySelectorAll('.wi')]; cws.forEach(w => w.classList.add('cw'));
+  conf.querySelectorAll('.w').forEach(w => w.style.clipPath = 'none');
+
+  // ticker: fill the track, then let scroll velocity drive speed, direction and lean
+  const ticker = $('#ticker'), track = ticker.querySelector('.ticker__track'), group = track.firstElementChild;
+  let gw = 0, tx = 0, dir = 1, tickerOn = false;
+  function fillTicker(){
+    gw = group.getBoundingClientRect().width;
+    while (track.children.length < 2 || track.scrollWidth < gw + innerWidth*1.3) track.appendChild(group.cloneNode(true));
+  }
+  document.fonts.ready.then(fillTicker); fillTicker();
+  addEventListener('resize', fillTicker);
+  new IntersectionObserver(es => { tickerOn = es[0].isIntersecting; }).observe(ticker);
+
+  const letters = $$('.hero__mark i'), band = $('.band'), trade = $('.trade'), bandImg = $('.band img');
+  let lastY = scrollY, vel = 0, last = performance.now(), lastLit = '';
+  function frame(now){
+    const dt = Math.min((now - last)/1000, .05) || .016; last = now;
+    const y = scrollY, vh = innerHeight;
+    vel += ((y - lastY)/dt - vel)*Math.min(1, dt*8); lastY = y;
+    if (Math.abs(vel) > 30) dir = vel > 0 ? 1 : -1;
+
+    if (tickerOn && gw){
+      tx -= dir*(70 + Math.min(Math.abs(vel), 3000)*.35)*dt;
+      tx = ((tx % gw) - gw) % gw;
+      track.style.transform = `translate3d(${tx.toFixed(1)}px,0,0) skewX(${clamp(-vel*.004, -10, 10).toFixed(2)}deg)`;
+    }
+
+    // DIVINE letters drift apart as the hero leaves
+    const hp = clamp(y/(vh*.9));
+    if (hp < 1.01) letters.forEach((l, i) => {
+      const c = i - 2.5;
+      l.style.translate = `${(c*hp*9).toFixed(2)}vw ${((i%2 ? -1 : 1)*hp*7 - hp*4).toFixed(2)}vh`;
+      l.style.rotate = `${(c*hp*5).toFixed(2)}deg`;
+    });
+
+    // confession reads itself in
+    const r = conf.getBoundingClientRect();
+    if (r.bottom > -50 && r.top < vh + 50){
+      const p = clamp((vh*.88 - r.top)/(r.height + vh*.38)), n = cws.length, key = p.toFixed(3);
+      if (key !== lastLit){ lastLit = key; cws.forEach((w, i) => { w.style.opacity = (.14 + .86*clamp((p*(n + 3) - i)/3)).toFixed(3); }); }
+    }
+
+    // bone band and pink trade fields open as they arrive
+    for (const s of [band, trade]){
+      const t = s.getBoundingClientRect().top;
+      if (t < vh*1.1 && t > -vh) s.style.setProperty('--o', (1 - clamp((vh - t)/(vh*.6))).toFixed(3));
+    }
+    const bt = bandImg.getBoundingClientRect(), bp = clamp((vh - bt.top)/(vh + bt.height));
+    if (bp > 0 && bp < 1) bandImg.style.transform = `translateX(${((.5 - bp)*-8).toFixed(2)}%) rotate(${((.5 - bp)*-5).toFixed(2)}deg)`;
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
 })();
 </script>
 
